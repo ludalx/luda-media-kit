@@ -431,7 +431,11 @@
       align-items: start;
     }
 
-    .work-left {}
+    .work-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
 
     .work-body {
       font-size: 1rem;
@@ -470,6 +474,7 @@
       padding: 1.75rem 2rem;
       border-bottom: 1px solid var(--border);
     }
+    .work-option:first-child { padding-top: 1.75rem; }
     .work-option:last-child { border-bottom: none; }
 
     .work-option-header {
@@ -633,17 +638,18 @@
 
   <!-- WORKING TOGETHER -->
   <section class="section">
-    <span class="eyebrow reveal">Working Together</span>
-    <h2 class="section-title reveal">The<br><span style="color:var(--muted)">BRIEF.</span></h2>
-    <div class="work-together reveal">
-
-      <div class="work-left">
-        <p class="work-body">Luda is one person — writing, shooting, and editing every film. Every frame is a deliberate choice, made by the same person from start to finish.</p>
-        <p class="work-past">Past partnerships span camera gear, workspace, tech, and wellness. Rates on request.</p>
-        <p class="work-disclaimer">Paid partnerships only — not open to gear or product-only arrangements.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;">
+      <div>
+        <span class="eyebrow reveal">Working Together</span>
+        <h2 class="section-title reveal" style="margin-bottom:2rem;">The<br><span style="color:var(--muted)">BRIEF.</span></h2>
+        <div class="work-left reveal">
+          <p class="work-body">Luda is one person — writing, shooting, and editing every film. Every frame is a deliberate choice, made by the same person from start to finish.</p>
+          <p class="work-past">Past partnerships span camera gear, workspace, tech, and wellness. Rates on request.</p>
+          <p class="work-disclaimer">Paid partnerships only — not open to gear or product-only arrangements.</p>
+        </div>
       </div>
 
-      <div class="work-options">
+      <div class="work-options reveal">
 
         <div class="work-option">
           <div class="work-option-header">
@@ -683,7 +689,6 @@
         </div>
 
       </div>
-
     </div>
   </section>
 
