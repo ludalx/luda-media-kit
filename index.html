@@ -6,7 +6,7 @@
   <title>Luda — Media Kit</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&family=Space+Mono&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=Space+Mono&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -20,8 +20,8 @@
       --text: #EDEAE4;
       --muted: rgba(237,234,228,0.45);
       --muted2: rgba(237,234,228,0.2);
-      --serif: 'Cormorant Garamond', Georgia, serif;
-      --sans: 'Inter', system-ui, sans-serif;
+      --display: 'Bebas Neue', sans-serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
       --mono: 'Space Mono', monospace;
     }
 
@@ -31,7 +31,7 @@
       background: var(--black);
       color: var(--text);
       font-family: var(--sans);
-      font-weight: 300;
+      font-weight: 400;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
@@ -131,16 +131,16 @@
     }
 
     .hero-title {
-      font-family: var(--serif);
-      font-weight: 300;
-      font-size: clamp(4.5rem, 10vw, 9.5rem);
-      line-height: 0.9;
-      letter-spacing: -0.02em;
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(5rem, 11vw, 10.5rem);
+      line-height: 0.88;
+      letter-spacing: 0.04em;
       margin-bottom: 3.5rem;
     }
 
-    .hero-title .italic { font-style: italic; color: var(--muted); }
-    .hero-title .red { color: var(--red); font-style: italic; }
+    .hero-title .italic { color: var(--muted); }
+    .hero-title .red { color: var(--red); }
 
     .hero-bottom {
       display: grid;
@@ -156,7 +156,7 @@
       color: var(--muted);
       line-height: 1.8;
       max-width: 46ch;
-      font-weight: 300;
+      font-weight: 400;
     }
 
     .hero-stats {
@@ -166,8 +166,8 @@
     }
 
     .stat-val {
-      font-family: var(--serif);
-      font-weight: 300;
+      font-family: var(--display);
+      font-weight: 400;
       font-size: 2.8rem;
       line-height: 1;
       margin-bottom: 0.35rem;
@@ -198,15 +198,15 @@
     }
 
     .section-title {
-      font-family: var(--serif);
-      font-weight: 300;
-      font-size: clamp(2.4rem, 4.5vw, 4rem);
-      line-height: 1.05;
-      letter-spacing: -0.01em;
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(2.6rem, 4.5vw, 4.2rem);
+      line-height: 0.95;
+      letter-spacing: 0.04em;
       margin-bottom: 4rem;
     }
 
-    .section-title em { font-style: italic; color: var(--muted); }
+    .section-title em { font-style: normal; color: var(--muted); }
 
     /* ── AUDIENCE ── */
     .audience-grid {
@@ -232,9 +232,9 @@
 
     /* gender */
     .gender-big {
-      font-family: var(--serif);
+      font-family: var(--display);
       font-size: 5.5rem;
-      font-weight: 300;
+      font-weight: 400;
       line-height: 1;
       margin-bottom: 0.2rem;
     }
@@ -315,9 +315,9 @@
     .geo-row:last-child { border-bottom: none; }
 
     .geo-pct {
-      font-family: var(--serif);
+      font-family: var(--display);
       font-size: 1.5rem;
-      font-weight: 300;
+      font-weight: 400;
     }
 
     /* ── VIDEOS ── */
@@ -486,9 +486,9 @@
     <p class="hero-eyebrow">Media Kit · 2026</p>
     <h1 class="hero-title">
       Short<br>
-      <span class="italic">films</span><br>
+      <span class="italic">FILMS</span><br>
       about<br>
-      <span class="red">modern</span><br>
+      <span class="red">MODERN</span><br>
       life.
     </h1>
     <div class="hero-bottom">
@@ -515,7 +515,7 @@
   <!-- AUDIENCE -->
   <section class="section">
     <span class="eyebrow reveal">Audience</span>
-    <h2 class="section-title reveal">Who's<br><em>watching.</em></h2>
+    <h2 class="section-title reveal">Who's<br><span style="color:var(--muted)">WATCHING.</span></h2>
     <div class="audience-grid reveal">
 
       <!-- Gender -->
@@ -578,7 +578,7 @@
   <!-- FEATURED FILMS -->
   <section class="section">
     <span class="eyebrow reveal">Featured Work</span>
-    <h2 class="section-title reveal">Films that<br><em>landed.</em></h2>
+    <h2 class="section-title reveal">Films that<br><span style="color:var(--muted)">LANDED.</span></h2>
     <div class="videos-grid reveal">
 
       <a class="vid-card" href="https://www.youtube.com/watch?v=v1ZQZGejMu8&t=15s" target="_blank" rel="noopener">
