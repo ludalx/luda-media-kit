@@ -125,8 +125,8 @@
 
     .contact-eyebrow {
       font-family: var(--mono);
-      font-size: 0.57rem;
-      letter-spacing: 0.28em;
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
       text-transform: uppercase;
       color: var(--red);
       margin-bottom: 1.5rem;
@@ -139,67 +139,106 @@
       font-size: clamp(3.5rem, 8vw, 7.5rem);
       line-height: 0.95;
       letter-spacing: 0.04em;
-      margin-bottom: 4rem;
+      margin-bottom: 5rem;
     }
 
-    .contact-heading em {  color: var(--muted); }
+    .contact-heading span { color: var(--muted); }
 
-    /* links panel */
-    .contact-links {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      border: 1px solid var(--border);
-    }
-
-    .contact-link-item {
+    /* ── BIG CONTACT ROWS ── */
+    .contact-rows {
       display: flex;
       flex-direction: column;
+      gap: 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .contact-row-item {
+      display: flex;
+      align-items: center;
       justify-content: space-between;
-      padding: 2.5rem;
-      border-right: 1px solid var(--border);
+      padding: 2.2rem 0;
+      border-bottom: 1px solid var(--border);
       text-decoration: none;
       color: inherit;
-      transition: background 0.25s;
       position: relative;
+      transition: padding-left 0.3s ease;
       overflow: hidden;
     }
-    .contact-link-item:last-child { border-right: none; }
-    .contact-link-item:hover { background: var(--surface); }
 
-    .contact-link-item::after {
-      content: '↗';
+    .contact-row-item::before {
+      content: '';
       position: absolute;
-      top: 1.5rem; right: 1.5rem;
-      font-size: 0.8rem;
-      color: var(--muted2);
-      transition: color 0.2s, transform 0.2s;
+      left: 0; top: 0; bottom: 0;
+      width: 0;
+      background: var(--red);
+      opacity: 0.08;
+      transition: width 0.35s ease;
     }
-    .contact-link-item:hover::after { color: var(--red); transform: translate(2px, -2px); }
+    .contact-row-item:hover::before { width: 100%; }
+    .contact-row-item:hover { padding-left: 1rem; }
 
-    .contact-link-platform {
+    .contact-row-left {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .contact-icon {
+      width: 52px; height: 52px;
+      border: 1px solid var(--border2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .contact-row-item:hover .contact-icon {
+      border-color: var(--red);
+      background: rgba(193,57,43,0.1);
+    }
+
+    .contact-icon svg {
+      width: 22px; height: 22px;
+      stroke: var(--muted);
+      fill: none;
+      stroke-width: 1.5;
+      transition: stroke 0.3s;
+    }
+    .contact-row-item:hover .contact-icon svg { stroke: var(--red); }
+
+    .contact-platform {
       font-family: var(--mono);
-      font-size: 0.55rem;
-      letter-spacing: 0.22em;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--muted2);
-      margin-bottom: 2rem;
+      margin-bottom: 0.35rem;
     }
 
-    .contact-link-value {
+    .contact-value {
       font-family: var(--display);
-      font-weight: 400;
-      font-size: clamp(1.1rem, 2vw, 1.6rem);
-      line-height: 1.25;
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
+      letter-spacing: 0.04em;
       color: var(--text);
-      word-break: break-word;
+      line-height: 1;
+      transition: color 0.2s;
+      word-break: break-all;
     }
+    .contact-row-item:hover .contact-value { color: #fff; }
 
-    .contact-link-item:hover .contact-link-value { color: var(--text); }
+    .contact-arrow {
+      font-size: 1.5rem;
+      color: var(--muted2);
+      transition: color 0.2s, transform 0.2s;
+      flex-shrink: 0;
+    }
+    .contact-row-item:hover .contact-arrow { color: var(--red); transform: translate(4px, -4px); }
 
     .contact-note {
-      margin-top: 2.5rem;
+      margin-top: 3rem;
       font-family: var(--mono);
-      font-size: 0.57rem;
+      font-size: 0.65rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--muted2);
@@ -216,8 +255,8 @@
 
     .footer-text {
       font-family: var(--mono);
-      font-size: 0.55rem;
-      letter-spacing: 0.15em;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--muted2);
     }
@@ -228,9 +267,9 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 760px) {
-      .contact-links { grid-template-columns: 1fr; }
-      .contact-link-item { border-right: none; border-bottom: 1px solid var(--border); }
-      .contact-link-item:last-child { border-bottom: none; }
+      .contact-value { font-size: clamp(1.4rem, 5vw, 2rem); }
+      .contact-icon { width: 42px; height: 42px; }
+      .contact-icon svg { width: 18px; height: 18px; }
       .nav-links { gap: 1.2rem; }
     }
 
@@ -257,24 +296,51 @@
     <span class="contact-eyebrow reveal">Contact</span>
     <h1 class="contact-heading reveal">
       Let's make<br>
-      <span style="color:var(--muted)">SOMETHING.</span>
+      <span>SOMETHING.</span>
     </h1>
 
-    <div class="contact-links reveal">
+    <div class="contact-rows reveal">
 
-      <a class="contact-link-item" href="https://www.youtube.com/@Ludalx" target="_blank" rel="noopener">
-        <span class="contact-link-platform">YouTube</span>
-        <span class="contact-link-value">@Ludalx</span>
+      <a class="contact-row-item" href="https://www.youtube.com/@Ludalx" target="_blank" rel="noopener">
+        <div class="contact-row-left">
+          <div class="contact-icon">
+            <!-- YouTube icon -->
+            <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z" stroke-linejoin="round"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="contact-platform">YouTube</div>
+            <div class="contact-value">@Ludalx</div>
+          </div>
+        </div>
+        <span class="contact-arrow">↗</span>
       </a>
 
-      <a class="contact-link-item" href="https://www.instagram.com/luda.lx/" target="_blank" rel="noopener">
-        <span class="contact-link-platform">Instagram</span>
-        <span class="contact-link-value">@luda.lx</span>
+      <a class="contact-row-item" href="https://www.instagram.com/luda.lx/" target="_blank" rel="noopener">
+        <div class="contact-row-left">
+          <div class="contact-icon">
+            <!-- Instagram icon -->
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </div>
+          <div>
+            <div class="contact-platform">Instagram</div>
+            <div class="contact-value">@luda.lx</div>
+          </div>
+        </div>
+        <span class="contact-arrow">↗</span>
       </a>
 
-      <a class="contact-link-item" href="mailto:ludabusinessenquiries@gmail.com">
-        <span class="contact-link-platform">Email</span>
-        <span class="contact-link-value">ludabusinessenquiries<wbr>@gmail.com</span>
+      <a class="contact-row-item" href="mailto:ludabusinessenquiries@gmail.com">
+        <div class="contact-row-left">
+          <div class="contact-icon">
+            <!-- Email icon -->
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="contact-platform">Email</div>
+            <div class="contact-value">ludabusinessenquiries@gmail.com</div>
+          </div>
+        </div>
+        <span class="contact-arrow">↗</span>
       </a>
 
     </div>
@@ -288,6 +354,12 @@
   </footer>
 
   <script>
+    const bar = document.getElementById('progress-bar');
+    window.addEventListener('scroll', () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = max > 0 ? (window.scrollY / max * 100) + '%' : '0%';
+    }, { passive: true });
+
     const els = document.querySelectorAll('.reveal');
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
