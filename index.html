@@ -514,7 +514,7 @@
             <div class="stat-label">Subscribers</div>
           </div>
           <div class="hero-stat-item">
-            <div class="stat-val" data-stat="views">5.7M</div>
+            <div class="stat-val" data-stat="channel-views">5.7M</div>
             <div class="stat-label">Lifetime Views</div>
           </div>
           <div class="hero-stat-item">
@@ -745,7 +745,7 @@
         const data = await res.json();
         const s = data.items[0].statistics;
         document.querySelectorAll('[data-stat="subs"]').forEach(el => el.textContent = fmtNum(s.subscriberCount));
-        document.querySelectorAll('[data-stat="views"]').forEach(el => el.textContent = fmtNum(s.viewCount));
+        document.querySelectorAll('[data-stat="channel-views"]').forEach(el => el.textContent = fmtNum(s.viewCount));
       } catch(e) {}
     }
 
