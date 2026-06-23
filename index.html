@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luda — Media Kit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&family=Space+Mono&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #C1392B;
+      --black: #090909;
+      --surface: #111111;
+      --surface2: #181818;
+      --border: rgba(255,255,255,0.07);
+      --border2: rgba(255,255,255,0.13);
+      --text: #EDEAE4;
+      --muted: rgba(237,234,228,0.45);
+      --muted2: rgba(237,234,228,0.2);
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Inter', system-ui, sans-serif;
+      --mono: 'Space Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--text);
+      font-family: var(--sans);
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      pointer-events: none;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+      background-size: 200px;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.6rem 5vw;
+      background: rgba(9,9,9,0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      height: 22px;
+      width: auto;
+      display: block;
+      /* logo is white PNG, renders on dark bg */
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+    }
+
+    .nav-link {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-link:hover, .nav-link.active { color: var(--text); }
+    .nav-link.active { border-bottom: 1px solid var(--red); padding-bottom: 1px; }
+
+    .nav-cta {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+      border: 1px solid var(--red);
+      padding: 0.5rem 1.1rem;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-cta:hover { background: var(--red); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 5vw 5rem;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-bg-glow {
+      position: absolute;
+      top: 0; right: 0;
+      width: 60vw; height: 70vh;
+      background: radial-gradient(ellipse at 80% 20%, rgba(193,57,43,0.08) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-title {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(4.5rem, 10vw, 9.5rem);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      margin-bottom: 3.5rem;
+    }
+
+    .hero-title .italic { font-style: italic; color: var(--muted); }
+    .hero-title .red { color: var(--red); font-style: italic; }
+
+    .hero-bottom {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 4rem;
+      padding-top: 3rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .hero-desc {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 46ch;
+      font-weight: 300;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 3.5rem;
+      flex-shrink: 0;
+    }
+
+    .stat-val {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: 2.8rem;
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+
+    .stat-label {
+      font-family: var(--mono);
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── SECTION SHELL ── */
+    .section {
+      padding: 7rem 5vw;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 0.57rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--red);
+      display: block;
+      margin-bottom: 1.2rem;
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(2.4rem, 4.5vw, 4rem);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      margin-bottom: 4rem;
+    }
+
+    .section-title em { font-style: italic; color: var(--muted); }
+
+    /* ── AUDIENCE ── */
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid var(--border);
+    }
+
+    .aud-panel {
+      padding: 2.5rem;
+      border-right: 1px solid var(--border);
+    }
+    .aud-panel:last-child { border-right: none; }
+
+    .aud-panel-label {
+      font-family: var(--mono);
+      font-size: 0.55rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted2);
+      margin-bottom: 2rem;
+    }
+
+    /* gender */
+    .gender-big {
+      font-family: var(--serif);
+      font-size: 5.5rem;
+      font-weight: 300;
+      line-height: 1;
+      margin-bottom: 0.2rem;
+    }
+
+    .gender-sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .gender-bar {
+      height: 2px;
+      background: var(--surface2);
+      position: relative;
+      margin-bottom: 0.6rem;
+    }
+    .gender-bar-fill {
+      position: absolute;
+      top: 0; left: 0; height: 100%;
+      background: var(--red);
+    }
+
+    .gender-labels {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 0.55rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+
+    /* age bars */
+    .age-rows { display: flex; flex-direction: column; gap: 1rem; }
+
+    .age-row-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .age-pct {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--muted);
+    }
+
+    .age-track {
+      height: 1px;
+      background: var(--border2);
+    }
+
+    .age-fill {
+      height: 100%;
+      background: var(--red);
+    }
+
+    .age-callout {
+      margin-top: 1.5rem;
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+
+    /* geo */
+    .geo-rows { display: flex; flex-direction: column; }
+
+    .geo-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.82rem;
+    }
+    .geo-row:last-child { border-bottom: none; }
+
+    .geo-pct {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 300;
+    }
+
+    /* ── VIDEOS ── */
+    .videos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid var(--border);
+    }
+
+    .vid-card {
+      border-right: 1px solid var(--border);
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: background 0.25s;
+    }
+    .vid-card:last-child { border-right: none; }
+    .vid-card:hover { background: var(--surface); }
+
+    .vid-thumb {
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      background: var(--surface2);
+      position: relative;
+    }
+
+    .vid-thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(15%);
+      transition: filter 0.35s, transform 0.4s;
+    }
+    .vid-card:hover .vid-thumb img {
+      filter: grayscale(0%);
+      transform: scale(1.03);
+    }
+
+    .vid-play {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.25s;
+      background: rgba(0,0,0,0.3);
+    }
+    .vid-card:hover .vid-play { opacity: 1; }
+
+    .vid-play-icon {
+      width: 44px; height: 44px;
+      border: 1.5px solid rgba(255,255,255,0.8);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .vid-play-icon svg {
+      width: 14px; height: 14px;
+      fill: white;
+      margin-left: 2px;
+    }
+
+    .vid-info { padding: 1.5rem; }
+
+    .vid-title-text {
+      font-size: 0.82rem;
+      line-height: 1.55;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .vid-stats {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .vid-stat {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .vid-stat-icon {
+      width: 12px; height: 12px;
+      opacity: 0.4;
+    }
+
+    .vid-stat-val {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      padding: 2rem 5vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-text {
+      font-family: var(--mono);
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted2);
+    }
+
+    /* ── REVEAL ANIMATION ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .nav { padding: 1.2rem 5vw; }
+      .hero { padding: 0 5vw 4rem; }
+      .section { padding: 5rem 5vw; }
+      .hero-bottom { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero-stats { flex-wrap: wrap; gap: 2rem; }
+      .audience-grid { grid-template-columns: 1fr; }
+      .aud-panel { border-right: none; border-bottom: 1px solid var(--border); }
+      .aud-panel:last-child { border-bottom: none; }
+      .videos-grid { grid-template-columns: 1fr; }
+      .vid-card { border-right: none; border-bottom: 1px solid var(--border); }
+      .vid-card:last-child { border-bottom: none; }
+    }
+
+    @media (max-width: 560px) {
+      .hero-title { font-size: clamp(3rem, 14vw, 4.5rem); }
+      .nav-links { gap: 1.2rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .vid-thumb img, .vid-play { transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="index.html">
+      <img src="LUDA_Logo.png" alt="Luda" class="nav-logo" />
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link active">About</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+      <a href="contact.html" class="nav-cta">Work together</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-bg-glow"></div>
+    <p class="hero-eyebrow">Media Kit · 2026</p>
+    <h1 class="hero-title">
+      Short<br>
+      <span class="italic">films</span><br>
+      about<br>
+      <span class="red">modern</span><br>
+      life.
+    </h1>
+    <div class="hero-bottom">
+      <p class="hero-desc">
+        Luda is a cinematic storytelling channel — built for audiences who feel something when they watch.
+      </p>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-val">111K</div>
+          <div class="stat-label">Subscribers</div>
+        </div>
+        <div>
+          <div class="stat-val">5.7M</div>
+          <div class="stat-label">Lifetime Views</div>
+        </div>
+        <div>
+          <div class="stat-val">236K</div>
+          <div class="stat-label">Watch Hours</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUDIENCE -->
+  <section class="section">
+    <span class="eyebrow reveal">Audience</span>
+    <h2 class="section-title reveal">Who's<br><em>watching.</em></h2>
+    <div class="audience-grid reveal">
+
+      <!-- Gender -->
+      <div class="aud-panel">
+        <p class="aud-panel-label">Gender · Lifetime</p>
+        <div class="gender-big">90%</div>
+        <div class="gender-sub">Male</div>
+        <div class="gender-bar">
+          <div class="gender-bar-fill" style="width:90.1%"></div>
+        </div>
+        <div class="gender-labels">
+          <span>Male 90.1%</span>
+          <span>Female 9.7%</span>
+        </div>
+      </div>
+
+      <!-- Age -->
+      <div class="aud-panel">
+        <p class="aud-panel-label">Age · Lifetime</p>
+        <div class="age-rows">
+          <div>
+            <div class="age-row-label"><span>18–24</span><span class="age-pct">31.4%</span></div>
+            <div class="age-track"><div class="age-fill" style="width:31.4%"></div></div>
+          </div>
+          <div>
+            <div class="age-row-label"><span>25–34</span><span class="age-pct">42.6%</span></div>
+            <div class="age-track"><div class="age-fill" style="width:42.6%"></div></div>
+          </div>
+          <div>
+            <div class="age-row-label"><span>35–44</span><span class="age-pct">14.6%</span></div>
+            <div class="age-track"><div class="age-fill" style="width:14.6%"></div></div>
+          </div>
+          <div>
+            <div class="age-row-label"><span>45–54</span><span class="age-pct">5.9%</span></div>
+            <div class="age-track"><div class="age-fill" style="width:5.9%"></div></div>
+          </div>
+          <div>
+            <div class="age-row-label"><span>13–17</span><span class="age-pct">3.2%</span></div>
+            <div class="age-track"><div class="age-fill" style="width:3.2%"></div></div>
+          </div>
+        </div>
+        <p class="age-callout">74% aged 18–34</p>
+      </div>
+
+      <!-- Geo -->
+      <div class="aud-panel">
+        <p class="aud-panel-label">Top Markets · Lifetime</p>
+        <div class="geo-rows">
+          <div class="geo-row"><span>United States</span><span class="geo-pct">25%</span></div>
+          <div class="geo-row"><span>India</span><span class="geo-pct">8.4%</span></div>
+          <div class="geo-row"><span>United Kingdom</span><span class="geo-pct">5.3%</span></div>
+          <div class="geo-row"><span>Australia</span><span class="geo-pct">4.7%</span></div>
+          <div class="geo-row"><span>Canada</span><span class="geo-pct">4.6%</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FEATURED FILMS -->
+  <section class="section">
+    <span class="eyebrow reveal">Featured Work</span>
+    <h2 class="section-title reveal">Films that<br><em>landed.</em></h2>
+    <div class="videos-grid reveal">
+
+      <a class="vid-card" href="https://www.youtube.com/watch?v=v1ZQZGejMu8&t=15s" target="_blank" rel="noopener">
+        <div class="vid-thumb">
+          <img src="https://i.ytimg.com/vi/v1ZQZGejMu8/maxresdefault.jpg" alt="I Started a 9-5" />
+          <div class="vid-play">
+            <div class="vid-play-icon">
+              <svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="vid-info">
+          <p class="vid-title-text">I Started a 9-5.</p>
+          <div class="vid-stats">
+            <div class="vid-stat">
+              <svg class="vid-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              <span class="vid-stat-val">700K views</span>
+            </div>
+            <div class="vid-stat">
+              <svg class="vid-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3H14z"/><path d="M7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3"/></svg>
+              <span class="vid-stat-val">58K likes</span>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <a class="vid-card" href="https://www.youtube.com/watch?v=NFm2Xjx61Q8&t=146s" target="_blank" rel="noopener">
+        <div class="vid-thumb">
+          <img src="https://i.ytimg.com/vi/NFm2Xjx61Q8/maxresdefault.jpg" alt="Got any hobbies?" />
+          <div class="vid-play">
+            <div class="vid-play-icon">
+              <svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="vid-info">
+          <p class="vid-title-text">"Got any hobbies?"</p>
+          <div class="vid-stats">
+            <div class="vid-stat">
+              <svg class="vid-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              <span class="vid-stat-val">900K views</span>
+            </div>
+            <div class="vid-stat">
+              <svg class="vid-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3H14z"/><path d="M7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3"/></svg>
+              <span class="vid-stat-val">100K likes</span>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <a class="vid-card" href="https://www.youtube.com/watch?v=VULFnmO4C_E&t=177s" target="_blank" rel="noopener">
+        <div class="vid-thumb">
+          <img src="https://i.ytimg.com/vi/VULFnmO4C_E/maxresdefault.jpg" alt="A Cozy Desk Setup You Can (Probably) Afford" />
+          <div class="vid-play">
+            <div class="vid-play-icon">
+              <svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="vid-info">
+          <p class="vid-title-text">A Cozy Desk Setup You Can (Probably) Afford</p>
+          <div class="vid-stats">
+            <div class="vid-stat">
+              <svg class="vid-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              <span class="vid-stat-val">1.2M views</span>
+            </div>
+            <div class="vid-stat">
+              <svg class="vid-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3H14z"/><path d="M7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3"/></svg>
+              <span class="vid-stat-val">44K likes</span>
+            </div>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span class="footer-text">© 2026 Luda</span>
+    <span class="footer-text">@Ludalx</span>
+  </footer>
+
+  <script>
+    const els = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    els.forEach(el => io.observe(el));
+  </script>
+
+</body>
+</html>
