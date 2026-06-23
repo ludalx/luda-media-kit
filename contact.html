@@ -12,9 +12,9 @@
 
     :root {
       --red: #C1392B;
-      --black: #090909;
-      --surface: #111111;
-      --surface2: #181818;
+      --black: #0D0A09;
+      --surface: #151110;
+      --surface2: #1C1614;
       --border: rgba(255,255,255,0.07);
       --border2: rgba(255,255,255,0.13);
       --text: #EDEAE4;
@@ -28,7 +28,10 @@
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--black);
+      background-color: #0D0A09;
+      background-image:
+        radial-gradient(ellipse 90% 60% at 50% 0%, #2a1108 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 100% 100%, #1a0c06 0%, transparent 55%);
       color: var(--text);
       font-family: var(--sans);
       font-weight: 400;
@@ -44,9 +47,19 @@
       inset: 0;
       z-index: 999;
       pointer-events: none;
-      opacity: 0.025;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
-      background-size: 200px;
+      opacity: 0.10;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+      background-size: 160px;
+    }
+
+    #progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px;
+      width: 0%;
+      background: var(--red);
+      z-index: 200;
+      transition: width 0.1s linear;
     }
 
     /* ── NAV ── */
@@ -227,6 +240,8 @@
   </style>
 </head>
 <body>
+
+  <div id="progress-bar"></div>
 
   <!-- NAV -->
   <nav class="nav">
