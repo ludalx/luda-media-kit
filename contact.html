@@ -230,8 +230,9 @@
 
   <!-- NAV -->
   <nav class="nav">
-    <a href="index.html">
-      <img src="LUDA_Logo.png" alt="Luda" class="nav-logo" />
+    <a href="index.html" style="text-decoration:none;">
+      <img src="LUDA_Logo.png" alt="Luda" class="nav-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+      <span style="display:none;font-family:var(--display);font-size:1.4rem;letter-spacing:0.1em;color:var(--text);">LUDA</span>
     </a>
     <div class="nav-links">
       <a href="index.html" class="nav-link">About</a>
