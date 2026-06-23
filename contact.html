@@ -244,6 +244,85 @@
       color: var(--muted2);
     }
 
+    /* ── PARTNERSHIP SECTION ── */
+    .partnership {
+      margin-top: 5rem;
+      padding-top: 4rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .partnership-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--red);
+      display: block;
+      margin-bottom: 1.25rem;
+    }
+
+    .partnership-heading {
+      font-family: var(--display);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      letter-spacing: 0.04em;
+      line-height: 0.95;
+      margin-bottom: 2rem;
+      color: var(--text);
+    }
+
+    .partnership-body {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 56ch;
+      margin-bottom: 2rem;
+    }
+
+    .partnership-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .partnership-list li {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.7;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 1rem;
+      align-items: baseline;
+    }
+
+    .partnership-list li::before {
+      content: '—';
+      color: var(--red);
+      flex-shrink: 0;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+    }
+
+    .partnership-past {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .partnership-disclaimer {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted2);
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
     /* ── FOOTER ── */
     .footer {
       padding: 2rem 5vw;
@@ -304,7 +383,6 @@
       <a class="contact-row-item" href="https://www.youtube.com/@Ludalx" target="_blank" rel="noopener">
         <div class="contact-row-left">
           <div class="contact-icon">
-            <!-- YouTube icon -->
             <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z" stroke-linejoin="round"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" stroke-linejoin="round"/></svg>
           </div>
           <div>
@@ -318,7 +396,6 @@
       <a class="contact-row-item" href="https://www.instagram.com/luda.lx/" target="_blank" rel="noopener">
         <div class="contact-row-left">
           <div class="contact-icon">
-            <!-- Instagram icon -->
             <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
           </div>
           <div>
@@ -329,10 +406,23 @@
         <span class="contact-arrow">↗</span>
       </a>
 
+      <a class="contact-row-item" href="https://www.patreon.com/Ludalx" target="_blank" rel="noopener">
+        <div class="contact-row-left">
+          <div class="contact-icon">
+            <!-- Patreon icon -->
+            <svg viewBox="0 0 24 24"><circle cx="14.5" cy="9.5" r="6.5"/><rect x="2" y="2" width="3" height="20"/></svg>
+          </div>
+          <div>
+            <div class="contact-platform">Patreon</div>
+            <div class="contact-value">Ludalx</div>
+          </div>
+        </div>
+        <span class="contact-arrow">↗</span>
+      </a>
+
       <a class="contact-row-item" href="mailto:ludabusinessenquiries@gmail.com">
         <div class="contact-row-left">
           <div class="contact-icon">
-            <!-- Email icon -->
             <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           </div>
           <div>
@@ -345,7 +435,7 @@
 
     </div>
 
-    <p class="contact-note reveal">All partnership enquiries welcome. Rates on request.</p>
+    <p class="contact-note reveal">Rates on request — ludabusinessenquiries@gmail.com</p>
   </main>
 
   <footer class="footer">
