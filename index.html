@@ -254,13 +254,11 @@
       text-decoration: none;
       color: inherit;
       display: block;
-      transition: border-color 0.3s;
     }
     .vid-card:nth-child(3n) { border-right: none; }
     .vid-card:nth-last-child(-n+3):nth-child(3n+1),
     .vid-card:nth-last-child(-n+2),
     .vid-card:last-child { border-bottom: none; }
-    .vid-card:hover { border-color: rgba(193,57,43,0.35); }
 
     .vid-thumb {
       aspect-ratio: 16/9;
@@ -344,15 +342,23 @@
     /* ── AUDIENCE ── */
     .audience-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1fr 1fr;
       border: 1px solid var(--border);
+    }
+
+    .aud-col-left {
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
     }
 
     .aud-panel {
       padding: 2.5rem;
-      border-right: 1px solid var(--border);
     }
-    .aud-panel:last-child { border-right: none; }
+
+    .aud-panel-gender {
+      border-bottom: 1px solid var(--border);
+    }
 
     .aud-panel-label {
       font-family: var(--mono);
@@ -450,8 +456,7 @@
       .hero-desc { grid-column: 1 / -1; padding-right: 0; }
       .hero-stat-item { padding: 1.5rem 0 0 0; border-left: none; border-top: 1px solid var(--border); }
       .audience-grid { grid-template-columns: 1fr; }
-      .aud-panel { border-right: none; border-bottom: 1px solid var(--border); }
-      .aud-panel:last-child { border-bottom: none; }
+      .aud-col-left { border-right: none; border-bottom: 1px solid var(--border); }
       .videos-grid { grid-template-columns: 1fr 1fr; }
     }
 
@@ -505,11 +510,11 @@
         </p>
         <div class="hero-stats">
           <div class="hero-stat-item">
-            <div class="stat-val">111K</div>
+            <div class="stat-val" data-stat="subs">111K</div>
             <div class="stat-label">Subscribers</div>
           </div>
           <div class="hero-stat-item">
-            <div class="stat-val">5.7M</div>
+            <div class="stat-val" data-stat="views">5.7M</div>
             <div class="stat-label">Lifetime Views</div>
           </div>
           <div class="hero-stat-item">
@@ -642,41 +647,44 @@
     <h2 class="section-title reveal">Who's<br><span style="color:var(--muted)">WATCHING.</span></h2>
     <div class="audience-grid reveal">
 
-      <div class="aud-panel">
-        <p class="aud-panel-label">Gender · Lifetime</p>
-        <div class="gender-big">90%</div>
-        <div class="gender-sub">Male</div>
-        <div class="gender-bar"><div class="gender-bar-fill" style="width:90.1%"></div></div>
-        <div class="gender-labels"><span>Male 90.1%</span><span>Female 9.7%</span></div>
-      </div>
-
-      <div class="aud-panel">
-        <p class="aud-panel-label">Age · Lifetime</p>
-        <div class="age-rows">
-          <div>
-            <div class="age-row-label"><span>18–24</span><span class="age-pct">31.4%</span></div>
-            <div class="age-track"><div class="age-fill" style="width:31.4%"></div></div>
-          </div>
-          <div>
-            <div class="age-row-label"><span>25–34</span><span class="age-pct">42.6%</span></div>
-            <div class="age-track"><div class="age-fill" style="width:42.6%"></div></div>
-          </div>
-          <div>
-            <div class="age-row-label"><span>35–44</span><span class="age-pct">14.6%</span></div>
-            <div class="age-track"><div class="age-fill" style="width:14.6%"></div></div>
-          </div>
-          <div>
-            <div class="age-row-label"><span>45–54</span><span class="age-pct">5.9%</span></div>
-            <div class="age-track"><div class="age-fill" style="width:5.9%"></div></div>
-          </div>
-          <div>
-            <div class="age-row-label"><span>13–17</span><span class="age-pct">3.2%</span></div>
-            <div class="age-track"><div class="age-fill" style="width:3.2%"></div></div>
-          </div>
+      <!-- LEFT COL: gender + age stacked -->
+      <div class="aud-col-left">
+        <div class="aud-panel aud-panel-gender">
+          <p class="aud-panel-label">Gender · Lifetime</p>
+          <div class="gender-big">90%</div>
+          <div class="gender-sub">Male</div>
+          <div class="gender-bar"><div class="gender-bar-fill" style="width:90.1%"></div></div>
+          <div class="gender-labels"><span>Male 90.1%</span><span>Female 9.7%</span></div>
         </div>
-        <p class="age-callout">74% aged 18–34</p>
+        <div class="aud-panel">
+          <p class="aud-panel-label">Age · Lifetime</p>
+          <div class="age-rows">
+            <div>
+              <div class="age-row-label"><span>18–24</span><span class="age-pct">31.4%</span></div>
+              <div class="age-track"><div class="age-fill" style="width:31.4%"></div></div>
+            </div>
+            <div>
+              <div class="age-row-label"><span>25–34</span><span class="age-pct">42.6%</span></div>
+              <div class="age-track"><div class="age-fill" style="width:42.6%"></div></div>
+            </div>
+            <div>
+              <div class="age-row-label"><span>35–44</span><span class="age-pct">14.6%</span></div>
+              <div class="age-track"><div class="age-fill" style="width:14.6%"></div></div>
+            </div>
+            <div>
+              <div class="age-row-label"><span>45–54</span><span class="age-pct">5.9%</span></div>
+              <div class="age-track"><div class="age-fill" style="width:5.9%"></div></div>
+            </div>
+            <div>
+              <div class="age-row-label"><span>13–17</span><span class="age-pct">3.2%</span></div>
+              <div class="age-track"><div class="age-fill" style="width:3.2%"></div></div>
+            </div>
+          </div>
+          <p class="age-callout">74% aged 18–34</p>
+        </div>
       </div>
 
+      <!-- RIGHT COL: geo -->
       <div class="aud-panel">
         <p class="aud-panel-label">Top Markets · Lifetime</p>
         <div class="geo-rows">
@@ -685,6 +693,11 @@
           <div class="geo-row"><span>United Kingdom</span><span class="geo-pct">5.3%</span></div>
           <div class="geo-row"><span>Australia</span><span class="geo-pct">4.7%</span></div>
           <div class="geo-row"><span>Canada</span><span class="geo-pct">4.6%</span></div>
+          <div class="geo-row"><span>Germany</span><span class="geo-pct">4.6%</span></div>
+          <div class="geo-row"><span>Philippines</span><span class="geo-pct">2.4%</span></div>
+          <div class="geo-row"><span>France</span><span class="geo-pct">2.0%</span></div>
+          <div class="geo-row"><span>Brazil</span><span class="geo-pct">1.9%</span></div>
+          <div class="geo-row"><span>Netherlands</span><span class="geo-pct">1.7%</span></div>
         </div>
       </div>
 
@@ -698,7 +711,34 @@
   </footer>
 
   <script>
-    // ── Scroll progress bar ──
+    // ── Live YouTube stats ──
+    const YT_CHANNEL_ID = 'UCiELs1dxyTThkxGFFo7M6vA';
+    const YT_API_KEY = 'YOUR_API_KEY_HERE';
+
+    async function fetchYTStats() {
+      try {
+        const res = await fetch(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${YT_CHANNEL_ID}&key=${YT_API_KEY}`);
+        const data = await res.json();
+        const stats = data.items[0].statistics;
+        const subs = parseInt(stats.subscriberCount);
+        const views = parseInt(stats.viewCount);
+
+        // Format numbers
+        function fmt(n) {
+          if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M';
+          if (n >= 1000) return Math.round(n / 1000) + 'K';
+          return n.toString();
+        }
+
+        // Update stat elements by data attribute
+        document.querySelectorAll('[data-stat="subs"]').forEach(el => el.textContent = fmt(subs));
+        document.querySelectorAll('[data-stat="views"]').forEach(el => el.textContent = fmt(views));
+      } catch(e) {
+        // Silently fail — static values remain
+      }
+    }
+
+    fetchYTStats();
     const bar = document.getElementById('progress-bar');
     window.addEventListener('scroll', () => {
       const max = document.documentElement.scrollHeight - window.innerHeight;
