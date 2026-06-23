@@ -423,6 +423,111 @@
 
     .geo-pct { font-family: var(--display); font-size: 1.5rem; font-weight: 400; }
 
+    /* ── WORKING TOGETHER ── */
+    .work-together {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .work-left {}
+
+    .work-body {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.85;
+      margin-bottom: 2.5rem;
+      max-width: 48ch;
+    }
+
+    .work-past {
+      font-size: 0.85rem;
+      color: var(--muted2);
+      line-height: 1.7;
+      margin-top: 2rem;
+    }
+
+    .work-disclaimer {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted2);
+      margin-top: 1.25rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .work-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid var(--border);
+    }
+
+    .work-option {
+      padding: 1.75rem 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .work-option:last-child { border-bottom: none; }
+
+    .work-option-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .work-option-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--red);
+      flex-shrink: 0;
+    }
+
+    .work-option-title {
+      font-family: var(--display);
+      font-size: 1.4rem;
+      letter-spacing: 0.04em;
+      color: var(--text);
+    }
+
+    .work-option-preferred {
+      font-family: var(--mono);
+      font-size: 0.55rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--red);
+      border: 1px solid var(--red);
+      padding: 0.15rem 0.5rem;
+      margin-left: auto;
+    }
+
+    .work-option-body {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 0.9rem;
+      padding-left: 1.4rem;
+    }
+
+    .work-option-example {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted2);
+      text-decoration: none;
+      padding-left: 1.4rem;
+      transition: color 0.2s;
+    }
+    .work-option-example:hover { color: var(--text); }
+    .work-option-example svg { width: 10px; height: 10px; stroke: currentColor; fill: none; stroke-width: 2; }
+
     /* ── FOOTER ── */
     .footer {
       padding: 2rem 5vw;
@@ -455,7 +560,7 @@
       .hero-bottom { grid-template-columns: 1fr 1fr; gap: 2rem; }
       .hero-desc { grid-column: 1 / -1; padding-right: 0; }
       .hero-stat-item { padding: 1.5rem 0 0 0; border-left: none; border-top: 1px solid var(--border); }
-      .audience-grid { grid-template-columns: 1fr; }
+      .work-together { grid-template-columns: 1fr; gap: 3rem; }
       .aud-col-left { border-right: none; border-bottom: 1px solid var(--border); }
       .videos-grid { grid-template-columns: 1fr 1fr; }
     }
@@ -526,7 +631,63 @@
     </div>
   </div>
 
-  <!-- FEATURED FILMS (moved first) -->
+  <!-- WORKING TOGETHER -->
+  <section class="section">
+    <span class="eyebrow reveal">Working Together</span>
+    <h2 class="section-title reveal">The<br><span style="color:var(--muted)">BRIEF.</span></h2>
+    <div class="work-together reveal">
+
+      <div class="work-left">
+        <p class="work-body">Luda is one person — writing, shooting, and editing every film. Every frame is a deliberate choice, made by the same person from start to finish.</p>
+        <p class="work-past">Past partnerships span camera gear, workspace, tech, and wellness. Rates on request.</p>
+        <p class="work-disclaimer">Paid partnerships only — not open to gear or product-only arrangements.</p>
+      </div>
+
+      <div class="work-options">
+
+        <div class="work-option">
+          <div class="work-option-header">
+            <div class="work-option-dot"></div>
+            <span class="work-option-title">Video Integration</span>
+            <span class="work-option-preferred">Preferred</span>
+          </div>
+          <p class="work-option-body">Works best when there's a genuine connection to the content. The product fits the story, the audience doesn't feel sold to.</p>
+          <a class="work-option-example" href="https://www.youtube.com/watch?v=v1ZQZGejMu8&t=15s" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            30 sec integration example ↗
+          </a>
+        </div>
+
+        <div class="work-option">
+          <div class="work-option-header">
+            <div class="work-option-dot" style="background:var(--muted2)"></div>
+            <span class="work-option-title">Dedicated Segment</span>
+          </div>
+          <p class="work-option-body">Scripted and shot to the same standard as the rest of the video.</p>
+          <a class="work-option-example" href="https://www.youtube.com/watch?v=yciFTolSxdI&t=198s" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            1 min segment example ↗
+          </a>
+        </div>
+
+        <div class="work-option">
+          <div class="work-option-header">
+            <div class="work-option-dot" style="background:var(--muted2)"></div>
+            <span class="work-option-title">Custom Content</span>
+          </div>
+          <p class="work-option-body">Let's find something that works for both of us.</p>
+          <a class="work-option-example" href="https://www.youtube.com/watch?v=b54jMm0cEcM&t=129s" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            Full video example ↗
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FEATURED FILMS -->
   <section class="section">
     <span class="eyebrow reveal">Featured Work</span>
     <h2 class="section-title reveal">Films that<br><span style="color:var(--muted)">LANDED.</span></h2>
