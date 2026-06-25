@@ -125,7 +125,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 0 5vw 5rem;
+      padding: 0 5vw 4rem;
       padding-top: 70px;
       position: relative;
       overflow: hidden;
@@ -140,57 +140,28 @@
       pointer-events: none;
     }
 
-    .hero-logo-wrap {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1.5rem 0 0;
-    }
-
-    .hero-logo-wrap img {
-      max-height: 200px;
-      max-width: 60%;
-      object-fit: contain;
-      display: block;
-    }
-
-    .hero-logo-fallback {
-      display: none;
-      font-family: var(--display);
-      font-size: clamp(5rem, 12vw, 10rem);
-      letter-spacing: 0.1em;
-      color: var(--text);
-    }
-
     .hero-title {
       font-family: var(--display);
       font-weight: 400;
-      font-size: clamp(2.2rem, 3.5vw, 4rem);
-      line-height: 1;
-      letter-spacing: 0.05em;
-      margin-bottom: 2rem;
+      font-size: clamp(5rem, 14.5vw, 16rem);
+      line-height: 0.88;
+      letter-spacing: 0.02em;
+      margin-top: auto;
+      padding-top: 3rem;
     }
 
     .hero-title .line-white { color: var(--text); display: block; }
-    .hero-title .line-grey { color: var(--muted); display: block; }
+    .hero-title .line-grey { color: rgba(237,234,228,0.28); display: block; }
     .hero-title .line-red { color: var(--red); display: block; }
 
     .hero-bottom {
       display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
+      grid-template-columns: repeat(4, 1fr);
       align-items: end;
       gap: 0;
       padding-top: 2.5rem;
+      margin-top: 3rem;
       border-top: 1px solid var(--border);
-    }
-
-    .hero-desc {
-      font-size: 1.15rem;
-      color: var(--muted);
-      line-height: 1.75;
-      font-weight: 400;
-      padding-right: 4rem;
     }
 
     .hero-stats { display: contents; }
@@ -200,10 +171,12 @@
       border-left: 1px solid var(--border);
     }
 
+    .hero-stat-item:first-child { padding-left: 0; border-left: none; }
+
     .stat-val {
       font-family: var(--display);
       font-weight: 400;
-      font-size: clamp(3rem, 4.5vw, 5rem);
+      font-size: clamp(2.5rem, 4vw, 4.5rem);
       line-height: 1;
       margin-bottom: 0.4rem;
     }
@@ -241,24 +214,55 @@
     }
 
     /* ── VIDEOS ── */
-    .videos-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      border: 1px solid var(--border);
+    .videos-scroll-wrap {
+      position: relative;
+      margin-top: 0;
     }
 
+    .videos-grid {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      border: 1px solid var(--border);
+      cursor: grab;
+    }
+    .videos-grid::-webkit-scrollbar { display: none; }
+    .videos-grid.dragging { cursor: grabbing; }
+
     .vid-card {
+      flex: 0 0 calc(100% / 3);
+      min-width: calc(100% / 3);
+      scroll-snap-align: start;
       border-right: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
       overflow: hidden;
       text-decoration: none;
       color: inherit;
       display: block;
     }
-    .vid-card:nth-child(3n) { border-right: none; }
-    .vid-card:nth-last-child(-n+3):nth-child(3n+1),
-    .vid-card:nth-last-child(-n+2),
-    .vid-card:last-child { border-bottom: none; }
+    .vid-card:last-child { border-right: none; }
+
+    .videos-nav {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .videos-nav-btn {
+      width: 36px; height: 36px;
+      border: 1px solid var(--border2);
+      background: none;
+      color: var(--muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.2s, color 0.2s;
+      font-size: 0.9rem;
+    }
+    .videos-nav-btn:hover { border-color: var(--red); color: var(--text); }
 
     .vid-thumb {
       aspect-ratio: 16/9;
@@ -562,9 +566,9 @@
       .nav { padding: 1.2rem 5vw; }
       .hero { padding: 4rem 5vw; }
       .section { padding: 5rem 5vw; }
-      .hero-bottom { grid-template-columns: 1fr 1fr; gap: 2rem; }
-      .hero-desc { grid-column: 1 / -1; padding-right: 0; }
-      .hero-stat-item { padding: 1.5rem 0 0 0; border-left: none; border-top: 1px solid var(--border); }
+      .hero-bottom { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+      .hero-stat-item { padding: 1rem 0 0 0; border-left: none; border-top: 1px solid var(--border); }
+      .hero-stat-item:first-child { padding-top: 1rem; border-top: 1px solid var(--border); }
       .work-together { grid-template-columns: 1fr; gap: 3rem; }
       .aud-col-left { border-right: none; border-bottom: 1px solid var(--border); }
       .videos-grid { grid-template-columns: 1fr 1fr; }
@@ -603,37 +607,29 @@
   <div class="hero">
     <div class="hero-bg-glow"></div>
 
-    <!-- Logo centred in upper portion -->
-    <div class="hero-logo-wrap">
-      <img src="LUDA logo.png" alt="Luda"
-           onerror="this.style.display='none';this.nextSibling.style.display='block'" />
-      <span class="hero-logo-fallback">LUDA</span>
-    </div>
+    <h1 class="hero-title">
+      <span class="line-white">SHORT FILMS</span>
+      <span class="line-grey">ABOUT</span>
+      <span class="line-red">MODERN LIFE.</span>
+    </h1>
 
-    <!-- Title sits just above the bottom bar -->
-    <div>
-      <h1 class="hero-title">
-        <span class="line-white">SHORT FILMS</span>
-        <span class="line-grey">ABOUT</span>
-        <span class="line-red">MODERN LIFE.</span>
-      </h1>
-      <div class="hero-bottom">
-        <p class="hero-desc">
-          Luda is a cinematic storytelling channel — built for audiences who feel something when they watch.
-        </p>
-        <div class="hero-stats">
-          <div class="hero-stat-item">
-            <div class="stat-val" data-stat="subs">111K</div>
-            <div class="stat-label">Subscribers</div>
-          </div>
-          <div class="hero-stat-item">
-            <div class="stat-val" data-stat="channel-views">5.7M</div>
-            <div class="stat-label">Lifetime Views</div>
-          </div>
-          <div class="hero-stat-item">
-            <div class="stat-val">236K</div>
-            <div class="stat-label">Watch Hours</div>
-          </div>
+    <div class="hero-bottom">
+      <div class="hero-stats">
+        <div class="hero-stat-item">
+          <div class="stat-val" data-stat="subs">111K</div>
+          <div class="stat-label">Subscribers</div>
+        </div>
+        <div class="hero-stat-item">
+          <div class="stat-val" data-stat="channel-views">5.7M</div>
+          <div class="stat-label">Lifetime Views</div>
+        </div>
+        <div class="hero-stat-item">
+          <div class="stat-val" data-stat="avg-views-12m">—</div>
+          <div class="stat-label">Avg Views · 12 Months</div>
+        </div>
+        <div class="hero-stat-item">
+          <div class="stat-val" data-stat="avg-views-3">—</div>
+          <div class="stat-label">Avg Views · Last 3 Videos</div>
         </div>
       </div>
     </div>
@@ -699,159 +695,81 @@
   <section class="section" id="featured">
     <span class="eyebrow reveal">Featured Work</span>
     <h2 class="section-title reveal">Films that<br><span style="color:var(--muted)">LANDED.</span></h2>
-    <div class="videos-grid reveal">
+    <div class="videos-scroll-wrap reveal">
+      <div class="videos-grid" id="videos-grid">
 
-      <a class="vid-card" href="https://www.youtube.com/watch?v=NFm2Xjx61Q8&t=146s" target="_blank" rel="noopener" data-video-id="NFm2Xjx61Q8">
-        <div class="vid-thumb">
-          <img src="https://i.ytimg.com/vi/NFm2Xjx61Q8/maxresdefault.jpg" alt="Got any hobbies?" />
-          <div class="vid-overlay"></div>
-          <div class="vid-play"><div class="vid-play-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div></div>
-        </div>
-        <div class="vid-info">
-          <p class="vid-title-text">"Got any hobbies?"</p>
-          <div class="vid-stats">
-            <div class="vid-stat">
-              <svg class="vid-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-              <span class="vid-stat-val" data-stat="views">—</span>
-            </div>
-            <div class="vid-stat">
-              <svg class="vid-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3H14z"/><path d="M7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3"/></svg>
-              <span class="vid-stat-val" data-stat="likes">—</span>
-            </div>
-            <div class="vid-stat">
-              <svg class="vid-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-              <span class="vid-stat-val" data-stat="comments">—</span>
+        <a class="vid-card" href="https://www.youtube.com/watch?v=NFm2Xjx61Q8&t=146s" target="_blank" rel="noopener" data-video-id="NFm2Xjx61Q8">
+          <div class="vid-thumb">
+            <img src="https://i.ytimg.com/vi/NFm2Xjx61Q8/maxresdefault.jpg" alt="Got any hobbies?" />
+            <div class="vid-overlay"></div>
+            <div class="vid-play"><div class="vid-play-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div></div>
+          </div>
+          <div class="vid-info">
+            <p class="vid-title-text">"Got any hobbies?"</p>
+            <div class="vid-stats">
+              <div class="vid-stat"><svg class="vid-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg><span class="vid-stat-val" data-stat="views">—</span></div>
+              <div class="vid-stat"><svg class="vid-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3H14z"/><path d="M7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3"/></svg><span class="vid-stat-val" data-stat="likes">—</span></div>
+              <div class="vid-stat"><svg class="vid-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg><span class="vid-stat-val" data-stat="comments">—</span></div>
             </div>
           </div>
-        </div>
-      </a>
+        </a>
 
-      <a class="vid-card" href="https://www.youtube.com/watch?v=v1ZQZGejMu8&t=15s" target="_blank" rel="noopener" data-video-id="v1ZQZGejMu8">
-        <div class="vid-thumb">
-          <img src="https://i.ytimg.com/vi/v1ZQZGejMu8/maxresdefault.jpg" alt="I Started a 9-5" />
-          <div class="vid-overlay"></div>
-          <div class="vid-play"><div class="vid-play-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div></div>
-        </div>
-        <div class="vid-info">
-          <p class="vid-title-text">I Started a 9-5.</p>
-          <div class="vid-stats">
-            <div class="vid-stat">
-              <svg class="vid-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-              <span class="vid-stat-val" data-stat="views">—</span>
-            </div>
-            <div class="vid-stat">
-              <svg class="vid-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3H14z"/><path d="M7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3"/></svg>
-              <span class="vid-stat-val" data-stat="likes">—</span>
-            </div>
-            <div class="vid-stat">
-              <svg class="vid-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-              <span class="vid-stat-val" data-stat="comments">—</span>
+        <a class="vid-card" href="https://www.youtube.com/watch?v=v1ZQZGejMu8&t=15s" target="_blank" rel="noopener" data-video-id="v1ZQZGejMu8">
+          <div class="vid-thumb">
+            <img src="https://i.ytimg.com/vi/v1ZQZGejMu8/maxresdefault.jpg" alt="I Started a 9-5" />
+            <div class="vid-overlay"></div>
+            <div class="vid-play"><div class="vid-play-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div></div>
+          </div>
+          <div class="vid-info">
+            <p class="vid-title-text">I Started a 9-5.</p>
+            <div class="vid-stats">
+              <div class="vid-stat"><svg class="vid-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg><span class="vid-stat-val" data-stat="views">—</span></div>
+              <div class="vid-stat"><svg class="vid-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3H14z"/><path d="M7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3"/></svg><span class="vid-stat-val" data-stat="likes">—</span></div>
+              <div class="vid-stat"><svg class="vid-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg><span class="vid-stat-val" data-stat="comments">—</span></div>
             </div>
           </div>
-        </div>
-      </a>
+        </a>
 
-      <a class="vid-card" href="https://www.youtube.com/watch?v=VULFnmO4C_E&t=177s" target="_blank" rel="noopener" data-video-id="VULFnmO4C_E">
-        <div class="vid-thumb">
-          <img src="https://i.ytimg.com/vi/VULFnmO4C_E/maxresdefault.jpg" alt="A Cozy Desk Setup You Can (Probably) Afford" />
-          <div class="vid-overlay"></div>
-          <div class="vid-play"><div class="vid-play-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div></div>
-        </div>
-        <div class="vid-info">
-          <p class="vid-title-text">A Cozy Desk Setup You Can (Probably) Afford</p>
-          <div class="vid-stats">
-            <div class="vid-stat">
-              <svg class="vid-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-              <span class="vid-stat-val" data-stat="views">—</span>
-            </div>
-            <div class="vid-stat">
-              <svg class="vid-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3H14z"/><path d="M7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3"/></svg>
-              <span class="vid-stat-val" data-stat="likes">—</span>
-            </div>
-            <div class="vid-stat">
-              <svg class="vid-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-              <span class="vid-stat-val" data-stat="comments">—</span>
+        <a class="vid-card" href="https://www.youtube.com/watch?v=VULFnmO4C_E&t=177s" target="_blank" rel="noopener" data-video-id="VULFnmO4C_E">
+          <div class="vid-thumb">
+            <img src="https://i.ytimg.com/vi/VULFnmO4C_E/maxresdefault.jpg" alt="A Cozy Desk Setup You Can (Probably) Afford" />
+            <div class="vid-overlay"></div>
+            <div class="vid-play"><div class="vid-play-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div></div>
+          </div>
+          <div class="vid-info">
+            <p class="vid-title-text">A Cozy Desk Setup You Can (Probably) Afford</p>
+            <div class="vid-stats">
+              <div class="vid-stat"><svg class="vid-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg><span class="vid-stat-val" data-stat="views">—</span></div>
+              <div class="vid-stat"><svg class="vid-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3H14z"/><path d="M7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3"/></svg><span class="vid-stat-val" data-stat="likes">—</span></div>
+              <div class="vid-stat"><svg class="vid-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg><span class="vid-stat-val" data-stat="comments">—</span></div>
             </div>
           </div>
-        </div>
-      </a>
+        </a>
 
-      <a class="vid-card" href="https://www.youtube.com/watch?v=sTA9vQgPS2k&t=123s" target="_blank" rel="noopener" data-video-id="sTA9vQgPS2k">
-        <div class="vid-thumb">
-          <img src="https://i.ytimg.com/vi/sTA9vQgPS2k/maxresdefault.jpg" alt="F*ck your wallet, go travel" />
-          <div class="vid-overlay"></div>
-          <div class="vid-play"><div class="vid-play-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div></div>
-        </div>
-        <div class="vid-info">
-          <p class="vid-title-text">F*ck your wallet, go travel.</p>
-          <div class="vid-stats">
-            <div class="vid-stat">
-              <svg class="vid-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-              <span class="vid-stat-val" data-stat="views">—</span>
-            </div>
-            <div class="vid-stat">
-              <svg class="vid-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3H14z"/><path d="M7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3"/></svg>
-              <span class="vid-stat-val" data-stat="likes">—</span>
-            </div>
-            <div class="vid-stat">
-              <svg class="vid-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-              <span class="vid-stat-val" data-stat="comments">—</span>
+        <a class="vid-card" href="https://www.youtube.com/watch?v=sTA9vQgPS2k&t=123s" target="_blank" rel="noopener" data-video-id="sTA9vQgPS2k">
+          <div class="vid-thumb">
+            <img src="https://i.ytimg.com/vi/sTA9vQgPS2k/maxresdefault.jpg" alt="F*ck your wallet, go travel" />
+            <div class="vid-overlay"></div>
+            <div class="vid-play"><div class="vid-play-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div></div>
+          </div>
+          <div class="vid-info">
+            <p class="vid-title-text">F*ck your wallet, go travel.</p>
+            <div class="vid-stats">
+              <div class="vid-stat"><svg class="vid-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg><span class="vid-stat-val" data-stat="views">—</span></div>
+              <div class="vid-stat"><svg class="vid-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3H14z"/><path d="M7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3"/></svg><span class="vid-stat-val" data-stat="likes">—</span></div>
+              <div class="vid-stat"><svg class="vid-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg><span class="vid-stat-val" data-stat="comments">—</span></div>
             </div>
           </div>
-        </div>
-      </a>
+        </a>
 
-      <a class="vid-card" href="https://www.youtube.com/watch?v=S935eqnF7og" target="_blank" rel="noopener" data-video-id="S935eqnF7og">
-        <div class="vid-thumb">
-          <img src="https://i.ytimg.com/vi/S935eqnF7og/maxresdefault.jpg" alt="Moving out at 21" />
-          <div class="vid-overlay"></div>
-          <div class="vid-play"><div class="vid-play-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div></div>
-        </div>
-        <div class="vid-info">
-          <p class="vid-title-text">Moving out at 21.</p>
-          <div class="vid-stats">
-            <div class="vid-stat">
-              <svg class="vid-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-              <span class="vid-stat-val" data-stat="views">—</span>
-            </div>
-            <div class="vid-stat">
-              <svg class="vid-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3H14z"/><path d="M7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3"/></svg>
-              <span class="vid-stat-val" data-stat="likes">—</span>
-            </div>
-            <div class="vid-stat">
-              <svg class="vid-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-              <span class="vid-stat-val" data-stat="comments">—</span>
-            </div>
-          </div>
-        </div>
-      </a>
-
-      <a class="vid-card" href="https://www.youtube.com/watch?v=b54jMm0cEcM&t=129s" target="_blank" rel="noopener" data-video-id="b54jMm0cEcM">
-        <div class="vid-thumb">
-          <img src="https://i.ytimg.com/vi/b54jMm0cEcM/maxresdefault.jpg" alt="This Lens Turns Your Life Into a Movie" />
-          <div class="vid-overlay"></div>
-          <div class="vid-play"><div class="vid-play-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div></div>
-        </div>
-        <div class="vid-info">
-          <p class="vid-title-text">This Lens Turns Your Life Into a Movie.</p>
-          <div class="vid-stats">
-            <div class="vid-stat">
-              <svg class="vid-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-              <span class="vid-stat-val" data-stat="views">—</span>
-            </div>
-            <div class="vid-stat">
-              <svg class="vid-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3H14z"/><path d="M7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3"/></svg>
-              <span class="vid-stat-val" data-stat="likes">—</span>
-            </div>
-            <div class="vid-stat">
-              <svg class="vid-stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-              <span class="vid-stat-val" data-stat="comments">—</span>
-            </div>
-          </div>
-        </div>
-      </a>
-
+      </div>
+      <div class="videos-nav">
+        <button class="videos-nav-btn" id="vid-prev">←</button>
+        <button class="videos-nav-btn" id="vid-next">→</button>
+      </div>
     </div>
+
+
   </section>
 
   <!-- AUDIENCE -->
@@ -873,6 +791,10 @@
           <p class="aud-panel-label">Age · Lifetime</p>
           <div class="age-rows">
             <div>
+              <div class="age-row-label"><span>13–17</span><span class="age-pct">3.2%</span></div>
+              <div class="age-track"><div class="age-fill" style="width:3.2%"></div></div>
+            </div>
+            <div>
               <div class="age-row-label"><span>18–24</span><span class="age-pct">31.4%</span></div>
               <div class="age-track"><div class="age-fill" style="width:31.4%"></div></div>
             </div>
@@ -887,10 +809,6 @@
             <div>
               <div class="age-row-label"><span>45–54</span><span class="age-pct">5.9%</span></div>
               <div class="age-track"><div class="age-fill" style="width:5.9%"></div></div>
-            </div>
-            <div>
-              <div class="age-row-label"><span>13–17</span><span class="age-pct">3.2%</span></div>
-              <div class="age-track"><div class="age-fill" style="width:3.2%"></div></div>
             </div>
           </div>
           <p class="age-callout">74% aged 18–34</p>
@@ -924,9 +842,67 @@
   </footer>
 
   <script>
+    // ── Video scroll nav ──
+    const grid = document.getElementById('videos-grid');
+    const cardWidth = () => grid.querySelector('.vid-card').offsetWidth;
+
+    document.getElementById('vid-next').addEventListener('click', () => {
+      grid.scrollBy({ left: cardWidth(), behavior: 'smooth' });
+    });
+    document.getElementById('vid-prev').addEventListener('click', () => {
+      grid.scrollBy({ left: -cardWidth(), behavior: 'smooth' });
+    });
+
+    // Drag to scroll
+    let isDown = false, startX, scrollLeft;
+    grid.addEventListener('mousedown', e => { isDown = true; grid.classList.add('dragging'); startX = e.pageX - grid.offsetLeft; scrollLeft = grid.scrollLeft; });
+    grid.addEventListener('mouseleave', () => { isDown = false; grid.classList.remove('dragging'); });
+    grid.addEventListener('mouseup', () => { isDown = false; grid.classList.remove('dragging'); });
+    grid.addEventListener('mousemove', e => { if (!isDown) return; e.preventDefault(); const x = e.pageX - grid.offsetLeft; grid.scrollLeft = scrollLeft - (x - startX); });
+
+    // ── Avg views: last 12 months + last 3 videos (cached 24h) ──
+    async function fetchAvgViews() {
+      const CACHE_KEY = 'luda_avg_views';
+      const CACHE_TTL = 24 * 60 * 60 * 1000;
+      const oneYearAgo = new Date(Date.now() - 365 * 24 * 60 * 60 * 1000).toISOString();
+
+      let cached = null;
+      try { cached = JSON.parse(localStorage.getItem(CACHE_KEY)); } catch(e) {}
+      if (cached && (Date.now() - cached.ts < CACHE_TTL)) {
+        applyAvgStats(cached.avg12m, cached.avg3);
+        return;
+      }
+
+      try {
+        // Search for videos published in last 12 months
+        const searchRes = await fetch(`https://www.googleapis.com/youtube/v3/search?part=id&channelId=${YT_CHANNEL_ID}&type=video&publishedAfter=${oneYearAgo}&maxResults=50&key=${YT_API_KEY}`);
+        const searchData = await searchRes.json();
+        const ids = searchData.items.map(i => i.id.videoId).join(',');
+        if (!ids) return;
+
+        // Get view counts for those videos
+        const statsRes = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=statistics&id=${ids}&key=${YT_API_KEY}`);
+        const statsData = await statsRes.json();
+        const views = statsData.items.map(i => parseInt(i.statistics.viewCount)).sort((a,b) => b - a);
+
+        const avg12m = Math.round(views.reduce((a,b) => a+b, 0) / views.length);
+        const avg3 = Math.round(views.slice(0,3).reduce((a,b) => a+b, 0) / Math.min(3, views.length));
+
+        localStorage.setItem(CACHE_KEY, JSON.stringify({ avg12m, avg3, ts: Date.now() }));
+        applyAvgStats(avg12m, avg3);
+      } catch(e) {}
+    }
+
+    function applyAvgStats(avg12m, avg3) {
+      document.querySelectorAll('[data-stat="avg-views-12m"]').forEach(el => el.textContent = fmtNum(avg12m));
+      document.querySelectorAll('[data-stat="avg-views-3"]').forEach(el => el.textContent = fmtNum(avg3));
+    }
+
+    fetchAvgViews();
+
     // ── Live YouTube stats ──
     const YT_CHANNEL_ID = 'UCiELs1dxyTThkxGFFo7M6vA';
-    const YT_API_KEY = 'AIzaSyDCqgnGEYam3bLG1a2WEUr2NzxXQIwUjiA';
+    const YT_API_KEY = 'YOUR_API_KEY_HERE';
 
     function fmtNum(n) {
       n = parseInt(n);
