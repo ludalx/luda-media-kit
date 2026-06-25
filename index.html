@@ -592,6 +592,14 @@
       color: var(--muted2);
     }
 
+    /* ── WORKING TOGETHER GRID ── */
+    .work-together-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
     /* ── REVEAL ── */
     .reveal {
       opacity: 0;
@@ -603,20 +611,26 @@
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       .nav { padding: 1.2rem 5vw; }
-      .hero { padding: 4rem 5vw; }
-      .section { padding: 5rem 5vw; }
-      .hero-bottom { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
-      .hero-stat-item { padding: 1rem 0 0 0; border-left: none; border-top: 1px solid var(--border); }
-      .hero-stat-item:first-child { padding-top: 1rem; border-top: 1px solid var(--border); }
-      .work-together { grid-template-columns: 1fr; gap: 3rem; }
+      .hero { padding: 4rem 5vw 3rem; }
+      .section { padding: 4rem 5vw; }
+      /* hero stats: stack all 3 vertically on mobile */
+      .hero-bottom { grid-template-columns: 1fr; gap: 0; }
+      .hero-stat-item { padding: 1rem 0; border-left: none; border-top: 1px solid var(--border); text-align: left; }
+      /* working together: single column */
+      .work-together { grid-template-columns: 1fr; gap: 2.5rem; }
+      .work-together-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      /* audience: single column */
+      .audience-grid { grid-template-columns: 1fr; }
       .aud-col-left { border-right: none; border-bottom: 1px solid var(--border); }
-      .videos-grid { grid-template-columns: 1fr 1fr; }
+      .aud-panel-geo { height: auto; }
     }
 
     @media (max-width: 560px) {
-      .videos-grid { grid-template-columns: 1fr; }
-      .vid-card { border-right: none !important; }
-      .nav-links { gap: 1.2rem; }
+      .nav-links { gap: 1.4rem; }
+      /* video cards single column on small screens */
+      .vid-card { flex: 0 0 85vw; min-width: 85vw; }
+      /* work brief grid single col */
+      div[style*="grid-template-columns:1fr 1fr"] { display: block !important; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -669,7 +683,7 @@
 
   <!-- WORKING TOGETHER -->
   <section class="section" id="working-together">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;">
+    <div class="work-together-grid">
       <div>
         <span class="eyebrow reveal">Working Together</span>
         <h2 class="section-title reveal" style="margin-bottom:2rem;">The<br><span style="color:var(--muted)">BRIEF.</span></h2>
