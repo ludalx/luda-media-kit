@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luda — Rates</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=Space+Mono&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #C1392B;
+      --black: #0D0A09;
+      --surface: #151110;
+      --surface2: #1C1614;
+      --border: rgba(255,255,255,0.07);
+      --border2: rgba(255,255,255,0.13);
+      --text: #EDEAE4;
+      --muted: rgba(237,234,228,0.45);
+      --muted2: rgba(237,234,228,0.2);
+      --display: 'Bebas Neue', sans-serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+      --mono: 'Space Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: #0D0A09;
+      background-image:
+        radial-gradient(ellipse 90% 60% at 50% 0%, #2a1108 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 100% 100%, #1a0c06 0%, transparent 55%);
+      color: var(--text);
+      font-family: var(--sans);
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      pointer-events: none;
+      opacity: 0.10;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+      background-size: 160px;
+    }
+
+    #progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px;
+      width: 0%;
+      background: var(--red);
+      z-index: 200;
+      transition: width 0.1s linear;
+    }
+
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.4rem 5vw;
+      background: rgba(13,10,9,0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-wordmark {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+    }
+
+    .nav-link {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--text); }
+    .nav-link.active { color: var(--text); border-bottom: 1px solid var(--red); padding-bottom: 1px; }
+
+    .nav-cta {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+      border: 1px solid var(--red);
+      padding: 0.5rem 1.1rem;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--red); }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 10rem 5vw 6rem;
+    }
+
+    .rates-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .rates-heading {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(3.5rem, 8vw, 7.5rem);
+      line-height: 0.95;
+      letter-spacing: 0.04em;
+      margin-bottom: 3rem;
+    }
+
+    .rates-heading span { color: var(--muted); }
+
+    .rates-placeholder {
+      border: 1px solid var(--border);
+      padding: 4rem;
+      max-width: 600px;
+    }
+
+    .rates-placeholder-icon {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted2);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .rates-placeholder-icon::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 1px;
+      background: var(--red);
+    }
+
+    .rates-placeholder-title {
+      font-family: var(--display);
+      font-size: 1.8rem;
+      letter-spacing: 0.04em;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .rates-placeholder-body {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .rates-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+      border: 1px solid var(--red);
+      padding: 0.7rem 1.4rem;
+      transition: background 0.2s;
+    }
+    .rates-cta:hover { background: var(--red); }
+
+    .footer {
+      padding: 2rem 5vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-text {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted2);
+    }
+
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.75s ease, transform 0.75s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+  <div id="progress-bar"></div>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-wordmark">Hello</a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">About</a>
+      <a href="index.html#working-together" class="nav-link">Work</a>
+      <a href="index.html#featured" class="nav-link">Films</a>
+      <a href="index.html#audience" class="nav-link">Audience</a>
+      <a href="rates.html" class="nav-link active">Rates</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+      <a href="contact.html" class="nav-cta">Get in touch</a>
+    </div>
+  </nav>
+
+  <main>
+    <span class="rates-eyebrow reveal">Rates</span>
+    <h1 class="rates-heading reveal">
+      What it<br>
+      <span>COSTS.</span>
+    </h1>
+
+    <div class="rates-placeholder reveal">
+      <div class="rates-placeholder-icon">Coming soon</div>
+      <div class="rates-placeholder-title">Rates & Packages</div>
+      <p class="rates-placeholder-body">
+        This page is being put together. In the meantime, reach out directly and we'll find the right fit for your budget and brief.
+      </p>
+      <a href="mailto:ludabusinessenquiries@gmail.com" class="rates-cta">
+        Get in touch ↗
+      </a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <span class="footer-text">© 2026 Luda</span>
+    <span class="footer-text">@Ludalx</span>
+  </footer>
+
+  <script>
+    const bar = document.getElementById('progress-bar');
+    window.addEventListener('scroll', () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = max > 0 ? (window.scrollY / max * 100) + '%' : '0%';
+    }, { passive: true });
+
+    const els = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    els.forEach(el => io.observe(el));
+  </script>
+
+</body>
+</html>
