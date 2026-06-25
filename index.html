@@ -870,6 +870,17 @@
     grid.addEventListener('mouseup', () => { isDown = false; grid.classList.remove('dragging'); });
     grid.addEventListener('mousemove', e => { if (!isDown) return; e.preventDefault(); const x = e.pageX - grid.offsetLeft; grid.scrollLeft = scrollLeft - (x - startX); });
 
+    // ── Live YouTube stats ──
+    const YT_CHANNEL_ID = 'UCiELs1dxyTThkxGFFo7M6vA';
+    const YT_API_KEY = 'AIzaSyDCqgnGEYam3bLG1a2WEUr2NzxXQIwUjiA';
+
+    function fmtNum(n) {
+      n = parseInt(n);
+      if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M';
+      if (n >= 1000) return (n / 1000).toFixed(n >= 100000 ? 0 : 1) + 'K';
+      return n.toString();
+    }
+
     // ── Avg views: last 3 videos (hardcoded IDs, cached 24h) ──
     const LAST_3_IDS = ['sTA9vQgPS2k', 'v1ZQZGejMu8', 'NFm2Xjx61Q8'];
 
@@ -905,17 +916,6 @@
     }
 
     fetchAvgViews();
-
-    // ── Live YouTube stats ──
-    const YT_CHANNEL_ID = 'UCiELs1dxyTThkxGFFo7M6vA';
-    const YT_API_KEY = 'AIzaSyDCqgnGEYam3bLG1a2WEUr2NzxXQIwUjiA';
-
-    function fmtNum(n) {
-      n = parseInt(n);
-      if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M';
-      if (n >= 1000) return (n / 1000).toFixed(n >= 100000 ? 0 : 1) + 'K';
-      return n.toString();
-    }
 
     // Channel stats (subs + views)
     async function fetchChannelStats() {
