@@ -236,7 +236,9 @@
       color: var(--text);
       line-height: 1;
       transition: color 0.2s;
-      word-break: break-all;
+      word-break: break-word;
+      overflow-wrap: anywhere;
+      line-height: 1.2;
     }
     .contact-row-item:hover .contact-value { color: #fff; }
 
@@ -280,10 +282,12 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 760px) {
-      .contact-value { font-size: clamp(1.4rem, 5vw, 2rem); }
-      .contact-icon { width: 42px; height: 42px; }
-      .contact-icon svg { width: 18px; height: 18px; }
-      .nav-links { gap: 1.2rem; }
+      .contact-rows { grid-template-columns: 1fr; }
+      .contact-value { font-size: clamp(1rem, 4vw, 1.4rem); }
+      .contact-icon { width: 36px; height: 36px; }
+      .contact-icon svg { width: 16px; height: 16px; }
+      main { padding: 5rem 5vw 2rem; }
+      .nav-links { gap: 1.4rem; }
     }
 
     @media (prefers-reduced-motion: reduce) {
