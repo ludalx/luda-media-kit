@@ -73,7 +73,7 @@
       top: 0; left: 0; right: 0;
       z-index: 100;
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
       align-items: center;
       padding: 1.4rem 5vw;
       background: linear-gradient(to bottom, rgba(9,9,9,0.55) 0%, transparent 100%);
@@ -132,7 +132,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 10rem 5vw 6rem;
+      padding: 6rem 5vw 3rem;
     }
 
     .contact-eyebrow {
@@ -141,40 +141,41 @@
       letter-spacing: 0.25em;
       text-transform: uppercase;
       color: var(--red);
-      margin-bottom: 1.5rem;
+      margin-bottom: 0.75rem;
       display: block;
     }
 
     .contact-heading {
       font-family: var(--display);
       font-weight: 400;
-      font-size: clamp(3.5rem, 8vw, 7.5rem);
+      font-size: clamp(2.5rem, 5vw, 5rem);
       line-height: 0.95;
       letter-spacing: 0.04em;
-      margin-bottom: 5rem;
+      margin-bottom: 2.5rem;
     }
 
     .contact-heading span { color: var(--muted); }
 
-    /* ── BIG CONTACT ROWS ── */
+    /* ── 2x2 GRID ── */
     .contact-rows {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
     }
 
     .contact-row-item {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 2.2rem 0;
-      border-bottom: 1px solid var(--border);
+      padding: 1.75rem 2rem;
       text-decoration: none;
       color: inherit;
       position: relative;
       transition: padding-left 0.3s ease;
       overflow: hidden;
+      background: var(--black);
     }
 
     .contact-row-item::before {
@@ -187,16 +188,16 @@
       transition: width 0.35s ease;
     }
     .contact-row-item:hover::before { width: 100%; }
-    .contact-row-item:hover { padding-left: 1rem; }
+    .contact-row-item:hover { padding-left: 2.4rem; }
 
     .contact-row-left {
       display: flex;
       align-items: center;
-      gap: 2rem;
+      gap: 1.25rem;
     }
 
     .contact-icon {
-      width: 52px; height: 52px;
+      width: 40px; height: 40px;
       border: 1px solid var(--border2);
       border-radius: 50%;
       display: flex;
@@ -211,7 +212,7 @@
     }
 
     .contact-icon svg {
-      width: 22px; height: 22px;
+      width: 18px; height: 18px;
       stroke: var(--muted);
       fill: none;
       stroke-width: 1.5;
@@ -221,16 +222,16 @@
 
     .contact-platform {
       font-family: var(--mono);
-      font-size: 0.65rem;
+      font-size: 0.58rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--muted2);
-      margin-bottom: 0.35rem;
+      margin-bottom: 0.25rem;
     }
 
     .contact-value {
       font-family: var(--display);
-      font-size: clamp(1.8rem, 3.5vw, 3rem);
+      font-size: clamp(1.2rem, 2vw, 1.8rem);
       letter-spacing: 0.04em;
       color: var(--text);
       line-height: 1;
@@ -240,17 +241,17 @@
     .contact-row-item:hover .contact-value { color: #fff; }
 
     .contact-arrow {
-      font-size: 1.5rem;
+      font-size: 1.1rem;
       color: var(--muted2);
       transition: color 0.2s, transform 0.2s;
       flex-shrink: 0;
     }
-    .contact-row-item:hover .contact-arrow { color: var(--red); transform: translate(4px, -4px); }
+    .contact-row-item:hover .contact-arrow { color: var(--red); transform: translate(3px, -3px); }
 
     .contact-note {
-      margin-top: 3rem;
+      margin-top: 1.5rem;
       font-family: var(--mono);
-      font-size: 0.65rem;
+      font-size: 0.6rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--muted2);
@@ -296,12 +297,10 @@
 
   <!-- NAV -->
   <nav class="nav">
-    <a href="index.html" class="nav-wordmark">Hello</a>
     <div class="nav-links">
       <a href="index.html" class="nav-link">About</a>
       <a href="rates.html" class="nav-link">Rates</a>
       <a href="contact.html" class="nav-link active">Contact</a>
-      <a href="mailto:ludabusinessenquiries@gmail.com" class="nav-cta">Get in touch</a>
     </div>
   </nav>
 
@@ -313,6 +312,19 @@
     </h1>
 
     <div class="contact-rows reveal">
+
+      <a class="contact-row-item" href="mailto:ludabusinessenquiries@gmail.com">
+        <div class="contact-row-left">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="contact-platform">Email</div>
+            <div class="contact-value">ludabusinessenquiries@gmail.com</div>
+          </div>
+        </div>
+        <span class="contact-arrow">↗</span>
+      </a>
 
       <a class="contact-row-item" href="https://www.youtube.com/@Ludalx" target="_blank" rel="noopener">
         <div class="contact-row-left">
@@ -343,7 +355,6 @@
       <a class="contact-row-item" href="https://www.patreon.com/Ludalx" target="_blank" rel="noopener">
         <div class="contact-row-left">
           <div class="contact-icon">
-            <!-- Patreon icon -->
             <svg viewBox="0 0 24 24"><circle cx="14.5" cy="9.5" r="6.5"/><rect x="2" y="2" width="3" height="20"/></svg>
           </div>
           <div>
@@ -354,22 +365,8 @@
         <span class="contact-arrow">↗</span>
       </a>
 
-      <a class="contact-row-item" href="mailto:ludabusinessenquiries@gmail.com">
-        <div class="contact-row-left">
-          <div class="contact-icon">
-            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          </div>
-          <div>
-            <div class="contact-platform">Email</div>
-            <div class="contact-value">ludabusinessenquiries@gmail.com</div>
-          </div>
-        </div>
-        <span class="contact-arrow">↗</span>
-      </a>
-
     </div>
 
-    <p class="contact-note reveal">Rates on request — ludabusinessenquiries@gmail.com</p>
   </main>
 
   <footer class="footer">
