@@ -46,7 +46,7 @@
       inset: 0;
       z-index: 999;
       pointer-events: none;
-      opacity: 0.10;
+      opacity: 0.18;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
       background-size: 160px;
     }
@@ -71,10 +71,10 @@
       justify-content: space-between;
       align-items: center;
       padding: 1.4rem 5vw;
-      background: rgba(9,9,9,0.88);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
+      background: linear-gradient(to bottom, rgba(9,9,9,0.55) 0%, transparent 100%);
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      border-bottom: none;
     }
 
     .nav-wordmark {
@@ -82,7 +82,7 @@
       font-size: 0.6rem;
       letter-spacing: 0.25em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: rgba(237,234,228,0.65);
       text-decoration: none;
     }
 
@@ -97,7 +97,7 @@
       font-size: 0.6rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: rgba(237,234,228,0.55);
       text-decoration: none;
       transition: color 0.2s;
     }
@@ -134,25 +134,50 @@
 
     .hero-bg-glow {
       position: absolute;
-      top: 0; right: 0;
-      width: 60vw; height: 70vh;
-      background: radial-gradient(ellipse at 80% 20%, rgba(193,57,43,0.08) 0%, transparent 65%);
+      top: -40%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 150%;
+      height: 95%;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at 48% 42%,
+        #f0c040 0%,
+        #d4601a 28%,
+        #c1392b 52%,
+        #5a1020 75%,
+        transparent 100%
+      );
+      opacity: 0.55;
+      filter: blur(22px);
       pointer-events: none;
     }
 
-    .hero-title {
-      font-family: var(--display);
-      font-weight: 400;
-      font-size: clamp(4.5rem, 13vw, 14.5rem);
-      line-height: 0.88;
-      letter-spacing: 0.02em;
-      margin-top: auto;
-      padding-top: 3rem;
+    .hero-centre {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      text-align: center;
+      padding: 3rem 0 2rem;
     }
 
-    .hero-title .line-white { color: var(--text); display: block; }
-    .hero-title .line-grey { color: rgba(237,234,228,0.28); display: block; }
-    .hero-title .line-red { color: var(--red); display: block; }
+    .hero-logo {
+      width: clamp(140px, 20vw, 260px);
+      display: block;
+      margin-bottom: 1.6rem;
+      filter: drop-shadow(0 0 35px rgba(240,150,40,0.4));
+    }
+
+    .hero-tagline {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(237,234,228,0.48);
+    }
 
     .hero-bottom {
       display: grid;
@@ -160,18 +185,17 @@
       align-items: end;
       gap: 0;
       padding-top: 2.5rem;
-      margin-top: 3rem;
       border-top: 1px solid var(--border);
+      position: relative;
+      z-index: 5;
     }
 
     .hero-stats { display: contents; }
 
     .hero-stat-item {
-      padding: 0 0 0 2.5rem;
-      border-left: 1px solid var(--border);
+      padding: 0 2.5rem;
+      text-align: center;
     }
-
-    .hero-stat-item:first-child { padding-left: 0; border-left: none; }
 
     .stat-val {
       font-family: var(--display);
@@ -608,9 +632,6 @@
     <a href="index.html" class="nav-wordmark">Hello</a>
     <div class="nav-links">
       <a href="index.html" class="nav-link active">About</a>
-      <a href="#working-together" class="nav-link">Work</a>
-      <a href="#featured" class="nav-link">Films</a>
-      <a href="#audience" class="nav-link">Audience</a>
       <a href="rates.html" class="nav-link">Rates</a>
       <a href="contact.html" class="nav-link">Contact</a>
       <a href="contact.html" class="nav-cta">Get in touch</a>
@@ -621,11 +642,12 @@
   <div class="hero">
     <div class="hero-bg-glow"></div>
 
-    <h1 class="hero-title">
-      <span class="line-white">SHORT FILMS</span>
-      <span class="line-grey">ABOUT</span>
-      <span class="line-red">MODERN LIFE.</span>
-    </h1>
+    <div class="hero-centre">
+      <img src="LUDA logo.png" alt="Luda" class="hero-logo"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+      <span style="display:none;font-family:var(--display);font-size:clamp(3rem,8vw,7rem);letter-spacing:0.1em;color:var(--text);margin-bottom:1.4rem;filter:drop-shadow(0 0 35px rgba(240,150,40,0.4))">LUDA</span>
+      <p class="hero-tagline">Short films about modern life.</p>
+    </div>
 
     <div class="hero-bottom">
       <div class="hero-stats">
