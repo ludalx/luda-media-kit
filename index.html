@@ -187,7 +187,6 @@
       align-items: end;
       gap: 0;
       padding-top: 2.5rem;
-      border-top: 1px solid var(--border);
       position: relative;
       z-index: 5;
     }
@@ -613,9 +612,9 @@
       .nav { padding: 1.2rem 5vw; }
       .hero { padding: 4rem 5vw 3rem; }
       .section { padding: 4rem 5vw; }
-      /* hero stats: stack all 3 vertically on mobile */
-      .hero-bottom { grid-template-columns: 1fr; gap: 0; }
-      .hero-stat-item { padding: 1rem 0; border-left: none; border-top: 1px solid var(--border); text-align: left; }
+      /* hero stats: stack all 3 vertically on mobile, centred, no lines */
+      .hero-bottom { grid-template-columns: 1fr; gap: 1.5rem; border-top: none; padding-top: 1.5rem; }
+      .hero-stat-item { padding: 0; border-left: none; border-top: none; text-align: center; }
       /* working together: single column */
       .work-together { grid-template-columns: 1fr; gap: 2.5rem; }
       .work-together-grid { grid-template-columns: 1fr; gap: 2.5rem; }
