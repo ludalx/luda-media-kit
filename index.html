@@ -143,7 +143,7 @@
     .hero-title {
       font-family: var(--display);
       font-weight: 400;
-      font-size: clamp(5rem, 14.5vw, 16rem);
+      font-size: clamp(4.5rem, 13vw, 14.5rem);
       line-height: 0.88;
       letter-spacing: 0.02em;
       margin-top: auto;
@@ -156,7 +156,7 @@
 
     .hero-bottom {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       align-items: end;
       gap: 0;
       padding-top: 2.5rem;
@@ -348,6 +348,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       border: 1px solid var(--border);
+      align-items: stretch;
     }
 
     .aud-col-left {
@@ -360,8 +361,22 @@
       padding: 2.5rem;
     }
 
+    .aud-panel-geo {
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
     .aud-panel-gender {
       border-bottom: 1px solid var(--border);
+    }
+
+    .geo-rows {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: space-between;
     }
 
     .aud-panel-label {
@@ -412,8 +427,6 @@
       text-transform: uppercase;
       color: var(--red);
     }
-
-    .geo-rows { display: flex; flex-direction: column; }
 
     .geo-row {
       display: flex;
@@ -598,6 +611,7 @@
       <a href="#working-together" class="nav-link">Work</a>
       <a href="#featured" class="nav-link">Films</a>
       <a href="#audience" class="nav-link">Audience</a>
+      <a href="rates.html" class="nav-link">Rates</a>
       <a href="contact.html" class="nav-link">Contact</a>
       <a href="contact.html" class="nav-cta">Get in touch</a>
     </div>
@@ -624,10 +638,6 @@
           <div class="stat-label">Lifetime Views</div>
         </div>
         <div class="hero-stat-item">
-          <div class="stat-val" data-stat="avg-views-12m">—</div>
-          <div class="stat-label">Avg Views · 12 Months</div>
-        </div>
-        <div class="hero-stat-item">
           <div class="stat-val" data-stat="avg-views-3">—</div>
           <div class="stat-label">Avg Views · Last 3 Videos</div>
         </div>
@@ -643,8 +653,8 @@
         <h2 class="section-title reveal" style="margin-bottom:2rem;">The<br><span style="color:var(--muted)">BRIEF.</span></h2>
         <div class="work-left reveal">
           <p class="work-body">Luda is one person — writing, shooting, and editing every film. Every frame is a deliberate choice, made by the same person from start to finish.</p>
-          <p class="work-past">Past partnerships span camera gear, workspace, tech, and wellness. Rates on request.</p>
-          <p class="work-disclaimer">Paid partnerships only — not open to gear or product-only arrangements.</p>
+          <p class="work-past">Past partnerships span camera gear, workspace, tech, and wellness. <a href="rates.html" style="color:var(--red);text-decoration:none;border-bottom:1px solid var(--red);">View rates →</a></p>
+          <p class="work-disclaimer">Paid partnerships only.</p>
         </div>
       </div>
 
@@ -791,16 +801,16 @@
           <p class="aud-panel-label">Age · Lifetime</p>
           <div class="age-rows">
             <div>
-              <div class="age-row-label"><span>13–17</span><span class="age-pct">3.2%</span></div>
-              <div class="age-track"><div class="age-fill" style="width:3.2%"></div></div>
+              <div class="age-row-label"><span>13–17</span><span class="age-pct">3.3%</span></div>
+              <div class="age-track"><div class="age-fill" style="width:3.3%"></div></div>
             </div>
             <div>
-              <div class="age-row-label"><span>18–24</span><span class="age-pct">31.4%</span></div>
-              <div class="age-track"><div class="age-fill" style="width:31.4%"></div></div>
+              <div class="age-row-label"><span>18–24</span><span class="age-pct">31.2%</span></div>
+              <div class="age-track"><div class="age-fill" style="width:31.2%"></div></div>
             </div>
             <div>
-              <div class="age-row-label"><span>25–34</span><span class="age-pct">42.6%</span></div>
-              <div class="age-track"><div class="age-fill" style="width:42.6%"></div></div>
+              <div class="age-row-label"><span>25–34</span><span class="age-pct">42.7%</span></div>
+              <div class="age-track"><div class="age-fill" style="width:42.7%"></div></div>
             </div>
             <div>
               <div class="age-row-label"><span>35–44</span><span class="age-pct">14.6%</span></div>
@@ -810,25 +820,25 @@
               <div class="age-row-label"><span>45–54</span><span class="age-pct">5.9%</span></div>
               <div class="age-track"><div class="age-fill" style="width:5.9%"></div></div>
             </div>
+            <div>
+              <div class="age-row-label"><span style="color:var(--muted2)">Other</span><span class="age-pct" style="color:var(--muted2)">2.3%</span></div>
+              <div class="age-track"><div class="age-fill" style="width:2.3%;background:var(--muted2)"></div></div>
+            </div>
           </div>
-          <p class="age-callout">74% aged 18–34</p>
+          <p class="age-callout">73.9% aged 18–34</p>
         </div>
       </div>
 
       <!-- RIGHT COL: geo -->
-      <div class="aud-panel">
+      <div class="aud-panel-geo">
         <p class="aud-panel-label">Top Markets · Lifetime</p>
         <div class="geo-rows">
-          <div class="geo-row"><span>United States</span><span class="geo-pct">25%</span></div>
-          <div class="geo-row"><span>India</span><span class="geo-pct">8.4%</span></div>
-          <div class="geo-row"><span>United Kingdom</span><span class="geo-pct">5.3%</span></div>
-          <div class="geo-row"><span>Australia</span><span class="geo-pct">4.7%</span></div>
-          <div class="geo-row"><span>Canada</span><span class="geo-pct">4.6%</span></div>
-          <div class="geo-row"><span>Germany</span><span class="geo-pct">4.6%</span></div>
-          <div class="geo-row"><span>Philippines</span><span class="geo-pct">2.4%</span></div>
-          <div class="geo-row"><span>France</span><span class="geo-pct">2.0%</span></div>
-          <div class="geo-row"><span>Brazil</span><span class="geo-pct">1.9%</span></div>
-          <div class="geo-row"><span>Netherlands</span><span class="geo-pct">1.7%</span></div>
+          <div class="geo-row"><span>United States</span><span class="geo-pct">24.5%</span></div>
+          <div class="geo-row"><span>India</span><span class="geo-pct">8.3%</span></div>
+          <div class="geo-row"><span>United Kingdom</span><span class="geo-pct">5.2%</span></div>
+          <div class="geo-row"><span>Australia</span><span class="geo-pct">4.6%</span></div>
+          <div class="geo-row"><span>Canada</span><span class="geo-pct">4.5%</span></div>
+          <div class="geo-row" style="color:var(--muted2)"><span>Other</span><span class="geo-pct" style="color:var(--muted2)">52.9%</span></div>
         </div>
       </div>
 
@@ -860,41 +870,37 @@
     grid.addEventListener('mouseup', () => { isDown = false; grid.classList.remove('dragging'); });
     grid.addEventListener('mousemove', e => { if (!isDown) return; e.preventDefault(); const x = e.pageX - grid.offsetLeft; grid.scrollLeft = scrollLeft - (x - startX); });
 
-    // ── Avg views: last 12 months + last 3 videos (cached 24h) ──
+    // ── Avg views: last 3 videos (hardcoded IDs, cached 24h) ──
+    const LAST_3_IDS = ['sTA9vQgPS2k', 'v1ZQZGejMu8', 'NFm2Xjx61Q8'];
+
     async function fetchAvgViews() {
-      const CACHE_KEY = 'luda_avg_views';
+      const CACHE_KEY = 'luda_avg3';
       const CACHE_TTL = 24 * 60 * 60 * 1000;
-      const oneYearAgo = new Date(Date.now() - 365 * 24 * 60 * 60 * 1000).toISOString();
 
       let cached = null;
       try { cached = JSON.parse(localStorage.getItem(CACHE_KEY)); } catch(e) {}
       if (cached && (Date.now() - cached.ts < CACHE_TTL)) {
-        applyAvgStats(cached.avg12m, cached.avg3);
+        applyAvgStats(cached.avg3);
         return;
       }
 
       try {
-        // Search for videos published in last 12 months
-        const searchRes = await fetch(`https://www.googleapis.com/youtube/v3/search?part=id&channelId=${YT_CHANNEL_ID}&type=video&publishedAfter=${oneYearAgo}&maxResults=50&key=${YT_API_KEY}`);
-        const searchData = await searchRes.json();
-        const ids = searchData.items.map(i => i.id.videoId).join(',');
-        if (!ids) return;
+        const res = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=statistics&id=${LAST_3_IDS.join(',')}&key=${YT_API_KEY}`);
+        const data = await res.json();
+        if (!data.items || data.items.length === 0) return;
 
-        // Get view counts for those videos
-        const statsRes = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=statistics&id=${ids}&key=${YT_API_KEY}`);
-        const statsData = await statsRes.json();
-        const views = statsData.items.map(i => parseInt(i.statistics.viewCount)).sort((a,b) => b - a);
+        const views = data.items
+          .map(i => parseInt(i.statistics.viewCount))
+          .filter(v => !isNaN(v));
+        if (views.length === 0) return;
 
-        const avg12m = Math.round(views.reduce((a,b) => a+b, 0) / views.length);
-        const avg3 = Math.round(views.slice(0,3).reduce((a,b) => a+b, 0) / Math.min(3, views.length));
-
-        localStorage.setItem(CACHE_KEY, JSON.stringify({ avg12m, avg3, ts: Date.now() }));
-        applyAvgStats(avg12m, avg3);
+        const avg3 = Math.round(views.reduce((a,b) => a+b, 0) / views.length);
+        localStorage.setItem(CACHE_KEY, JSON.stringify({ avg3, ts: Date.now() }));
+        applyAvgStats(avg3);
       } catch(e) {}
     }
 
-    function applyAvgStats(avg12m, avg3) {
-      document.querySelectorAll('[data-stat="avg-views-12m"]').forEach(el => el.textContent = fmtNum(avg12m));
+    function applyAvgStats(avg3) {
       document.querySelectorAll('[data-stat="avg-views-3"]').forEach(el => el.textContent = fmtNum(avg3));
     }
 
