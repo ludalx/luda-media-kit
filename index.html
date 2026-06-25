@@ -643,7 +643,7 @@
     <div class="hero-bg-glow"></div>
 
     <div class="hero-centre">
-      <img src="LUDA Logo.png" alt="Luda" class="hero-logo"
+      <img src="LUDA logo.png" alt="Luda" class="hero-logo"
         onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
       <span style="display:none;font-family:var(--display);font-size:clamp(3rem,8vw,7rem);letter-spacing:0.1em;color:var(--text);margin-bottom:1.4rem;filter:drop-shadow(0 0 35px rgba(240,150,40,0.4))">LUDA</span>
       <p class="hero-tagline">Short films about modern life.</p>
@@ -899,7 +899,7 @@
     function fmtNum(n) {
       n = parseInt(n);
       if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M';
-      if (n >= 1000) return (n / 1000).toFixed(n >= 100000 ? 0 : 1) + 'K';
+      if (n >= 1000) return Math.round(n / 1000) + 'K';
       return n.toString();
     }
 
