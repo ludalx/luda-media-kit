@@ -1022,7 +1022,7 @@
       requestAnimationFrame(step);
     }
 
-    const statEls = document.querySelectorAll('.stat-val');
+    const statEls = document.querySelectorAll('.stat-val:not([data-stat="subs"]):not([data-stat="channel-views"]):not([data-stat="avg-views-3"])');
     const counterIO = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) {
