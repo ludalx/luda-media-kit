@@ -14,9 +14,7 @@
       --red: #C1392B;
       --black: #0D0A09;
       --surface: #151110;
-      --surface2: #1C1614;
       --border: rgba(255,255,255,0.07);
-      --border2: rgba(255,255,255,0.13);
       --text: #EDEAE4;
       --muted: rgba(237,234,228,0.45);
       --muted2: rgba(237,234,228,0.2);
@@ -31,12 +29,7 @@
       background-color: #0D0A09;
       background-image:
         radial-gradient(ellipse 150% 95% at 50% -40%,
-          #f0c040 0%,
-          #d4601a 20%,
-          #c1392b 40%,
-          #5a1020 65%,
-          transparent 85%
-        );
+          #f0c040 0%, #d4601a 20%, #c1392b 40%, #5a1020 65%, transparent 85%);
       color: var(--text);
       font-family: var(--sans);
       font-weight: 400;
@@ -60,13 +53,13 @@
     #progress-bar {
       position: fixed;
       top: 0; left: 0;
-      height: 2px;
-      width: 0%;
+      height: 2px; width: 0%;
       background: var(--red);
       z-index: 200;
       transition: width 0.1s linear;
     }
 
+    /* ── NAV ── */
     .nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -76,24 +69,10 @@
       align-items: center;
       padding: 1.4rem 5vw;
       background: linear-gradient(to bottom, rgba(9,9,9,0.55) 0%, transparent 100%);
-      backdrop-filter: none;
       border-bottom: none;
     }
 
-    .nav-wordmark {
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: rgba(237,234,228,0.65);
-      text-decoration: none;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 2.5rem;
-    }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; }
 
     .nav-link {
       font-family: var(--mono);
@@ -107,123 +86,140 @@
     .nav-link:hover { color: var(--text); }
     .nav-link.active { color: var(--text); border-bottom: 1px solid var(--red); padding-bottom: 1px; }
 
-    .nav-cta {
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text);
-      text-decoration: none;
-      border: 1px solid var(--red);
-      padding: 0.5rem 1.1rem;
-      transition: background 0.2s;
-    }
-    .nav-cta:hover { background: var(--red); }
-
+    /* ── MAIN ── */
     main {
       flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 10rem 5vw 6rem;
+      padding: 7rem 5vw 5rem;
     }
 
-    .rates-eyebrow {
+    .eyebrow {
       font-family: var(--mono);
       font-size: 0.68rem;
       letter-spacing: 0.25em;
       text-transform: uppercase;
       color: var(--red);
-      margin-bottom: 1.5rem;
+      margin-bottom: 0.75rem;
       display: block;
     }
 
-    .rates-heading {
+    .heading {
       font-family: var(--display);
       font-weight: 400;
-      font-size: clamp(3.5rem, 8vw, 7.5rem);
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
       line-height: 0.95;
       letter-spacing: 0.04em;
       margin-bottom: 3rem;
     }
 
-    .rates-heading span { color: var(--muted); }
+    .heading span { color: var(--muted); }
 
-    .rates-placeholder {
-      border: none;
-      padding: 4rem 0;
-      max-width: 600px;
+    /* ── MULTI PACKAGE ROW ── */
+    .multi {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
     }
 
-    .rates-placeholder-icon {
+    .multi-label {
       font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.18em;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--muted2);
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
+      margin-bottom: 0.4rem;
     }
 
-    .rates-placeholder-icon::before {
-      content: '';
-      display: block;
-      width: 20px;
-      height: 1px;
-      background: var(--red);
-    }
-
-    .rates-placeholder-title {
-      font-family: var(--display);
-      font-size: 1.8rem;
-      letter-spacing: 0.04em;
-      margin-bottom: 1rem;
-      color: var(--text);
-    }
-
-    .rates-placeholder-body {
-      font-size: 0.9rem;
+    .multi-text {
+      font-size: 0.85rem;
       color: var(--muted);
-      line-height: 1.8;
-      margin-bottom: 2rem;
+      line-height: 1.7;
+      max-width: 48ch;
     }
 
     .rates-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
       font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.18em;
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--text);
       text-decoration: none;
       border: 1px solid var(--red);
-      padding: 0.7rem 1.4rem;
+      padding: 0.6rem 1.2rem;
+      white-space: nowrap;
+      flex-shrink: 0;
       transition: background 0.2s;
     }
     .rates-cta:hover { background: var(--red); }
 
+    /* ── OPTIONS ── */
+    .options {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+    }
+
+    .option {}
+
+    .opt-num {
+      font-family: var(--display);
+      font-size: 3rem;
+      color: rgba(193,57,43,0.3);
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+
+    .opt-title {
+      font-family: var(--display);
+      font-size: 1.4rem;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+      line-height: 1.1;
+    }
+
+    .opt-body {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    /* ── FOOTER ── */
     .footer {
       padding: 2rem 5vw;
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      /* no border */
     }
 
     .footer-text {
       font-family: var(--mono);
-      font-size: 0.65rem;
+      font-size: 0.6rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--muted2);
     }
 
+    /* ── REVEAL ── */
     .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.75s ease, transform 0.75s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 760px) {
+      .options { grid-template-columns: 1fr; gap: 2rem; }
+      .multi { flex-direction: column; align-items: flex-start; gap: 1.25rem; }
+      .rates-cta { align-self: flex-start; }
+      .nav-links { gap: 1.4rem; }
+      main { padding: 6rem 5vw 4rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
   </style>
 </head>
 <body>
@@ -239,20 +235,37 @@
   </nav>
 
   <main>
-    <span class="rates-eyebrow reveal">Rates</span>
-    <h1 class="rates-heading reveal">
-      Let's talk<br>
-      <span>NUMBERS.</span>
-    </h1>
+    <span class="eyebrow reveal">Rates</span>
+    <h1 class="heading reveal">The<br><span>FORMATS.</span></h1>
 
-    <div class="rates-placeholder reveal">
-      <div class="rates-placeholder-title">Get in touch.</div>
-      <p class="rates-placeholder-body">
-        Rates are discussed directly — every project is different. Send a brief to the email below and we'll take it from there.
-      </p>
-      <a href="mailto:ludabusinessenquiries@gmail.com" class="rates-cta">
-        ludabusinessenquiries@gmail.com ↗
-      </a>
+    <div class="multi reveal">
+      <div>
+        <div class="multi-label">Multi-video packages available</div>
+        <div class="multi-text">Brands looking for longer-term placement can discuss multi-video packages directly.</div>
+      </div>
+      <a href="mailto:ludabusinessenquiries@gmail.com" class="rates-cta">Get in touch ↗</a>
+    </div>
+
+    <div class="options reveal">
+
+      <div class="option">
+        <div class="opt-num">01</div>
+        <div class="opt-title">Mid-Roll</div>
+        <div class="opt-body">A dedicated segment woven right into the video. It's scripted and filmed to match the exact same look, feel, and production quality as the rest of the content.</div>
+      </div>
+
+      <div class="option">
+        <div class="opt-num">02</div>
+        <div class="opt-title">Hybrid Integration</div>
+        <div class="opt-body">Complete brand coverage throughout the video. Includes a title card mention at the start, natural placement within the scenes, and a dedicated ad read at the end.</div>
+      </div>
+
+      <div class="option">
+        <div class="opt-num">03</div>
+        <div class="opt-title">Product Placement</div>
+        <div class="opt-body">Your product features naturally inside the video where it makes the most sense for the story. There's no dedicated ad break — just an authentic, organic presence.</div>
+      </div>
+
     </div>
   </main>
 
